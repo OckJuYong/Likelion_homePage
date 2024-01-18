@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect }from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './header.css';
+import likelionLogo from '../../images/LikeLion_Logo.png';
+import MyInfoImg from '../../images/MyInfo.png';
+import { useNavigate } from 'react-router-dom';
+
 
 
 function Header() {
@@ -11,33 +15,25 @@ function Header() {
     return location.pathname === path;
   };
 
+
   return (
     <div className='header_main_container'>
-      <h2 className='header_menubar'>Quick Menu</h2>
-      <div className="header">
-        <Link to="/" className={isLinkActive('/') ? 'active' : ''}>
-          홈
-        </Link>
-        <Link to="/Board" className={isLinkActive('/Board') ? 'active' : ''}>
+      <h1 className='header_menubar'>Quick Menu</h1>
+      <div className="header_header">
+        <Link to="/Board" className="board" >
           게시판
         </Link>
-        <Link
-          to="/Introduction"
-          className={isLinkActive('/Introduction') ? 'active' : ''}
-        >
-          공지사항
-        </Link>
-        <Link to="/Login" className={isLinkActive('/Login') ? 'active' : ''}>
-          로그인
-        </Link>
-        <Link to="/info" className={isLinkActive('/info') ? 'active' : ''}>
+        <Link to="/info" className="info">
           내정보
         </Link>
-        <Link to="/Notice" className={isLinkActive('/Notice') ? 'active' : ''}>
+        <Link to="/Introduction" className="introduction">
+          공지사항
+        </Link>
+        <Link to="/Notice" className="notice">
           소개
         </Link>
-        <Link to="/Task" className={isLinkActive('/Task') ? 'active' : ''}>
-          과제함
+        <Link to="/Task" className="task">
+          과제 제출 게시판
         </Link>
       </div>
     </div>

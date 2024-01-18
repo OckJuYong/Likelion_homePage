@@ -1,0 +1,96 @@
+/* introduction.css */
+
+.introduction_main_container {
+    margin-top: 25vh;
+    margin-left: 3vw;
+    margin-right: 3vw;
+}
+
+.intro {
+    color: #FFF;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-left: 2vw;
+    margin-bottom: 2vh;
+}
+
+.Lion {
+    color: #F29827;
+    text-align: center;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+  
+.main_introduction {
+    width: 60px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid white;
+    margin-right: 100px;
+}
+
+.sub_introduction {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 0 10px;
+}
+
+.sub_introduction span {
+    margin-right: 10px;
+}
+
+.slider_button_container {
+    /* 버튼 위치 조정을 위한 스타일 */
+    position: absolute;
+    bottom: 10px; /* 원하는 위치로 조정하세요 */
+    left: 50%;
+    transform: translateX(-50%);
+}
+  
+.slider_button_container button {
+    /* 버튼 스타일 */
+    margin: 0 5px;
+    padding: 10px 15px;
+    font-size: 14px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.swiper-slide {
+    margin-right: 20px; /* 각 슬라이드 사이의 우측 여백 */
+    border-radius: 30px; /* 슬라이드의 모서리를 둥글게 만듭니다. */
+    background: #282828; /* 배경색 설정 */
+    box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.50); /* 그림자 효과 추가 */
+}
+
+.swiper-container {
+    margin-top: 20px; /* 상단 여백 */
+    margin-bottom: 20px; /* 하단 여백 */
+}
+  
+.swiper-slide {
+    margin-right: 20px; /* 각 슬라이드 사이의 우측 여백 */
+}
+  
+  /* 마지막 슬라이드에는 오른쪽 여백을 추가하지 않음 */
+.swiper-slide:last-child {
+    margin-right: 0;
+}
+
+.sub_introduction span,
+.sub_introduction a,
+.sub_introduction button {
+    color: #fff;
+}

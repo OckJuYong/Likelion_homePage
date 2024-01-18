@@ -1,3 +1,6 @@
 .task_main_container {
     color: white;
+    position: relative;
+    margin-top: 20vh;
 }
+

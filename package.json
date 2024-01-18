@@ -13,12 +13,21 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@ant-design/icons": "^5.2.6",
     "@ckeditor/ckeditor5-build-classic": "^40.2.0",
     "@ckeditor/ckeditor5-react": "^6.2.0",
+    "antd": "^5.12.6",
     "axios": "^1.6.3",
+    "react-burger-menu": "^3.0.9",
     "react-cookies": "^0.1.1",
+    "react-device-detect": "^2.2.3",
     "react-router-dom": "^6.21.1",
-    "react-scripts": "^5.0.1"
+    "react-scripts": "^5.0.1",
+    "react-sidebar": "^3.0.2",
+    "react-slick": "^0.29.0",
+    "slick-carousel": "^1.8.1",
+    "styled-components": "^6.1.6",
+    "swiper": "^11.0.5"
   },
   "browserslist": {
     "production": [
@@ -31,5 +40,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }

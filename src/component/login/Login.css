@@ -18,9 +18,6 @@
         flex-shrink: 0;
         text-align: center;
         margin-top: 15vh;
-        ;
-     
-        
     }
     
     .login_title h2,
@@ -38,20 +35,15 @@
 }
 .login_title h3{
     font-size: 40px;
-    color: white;
-    
-
+    color: white;    
 }
 .login_title h4{
     color: #ffda92;
     font-size: 13px;
-    
 }
 .login_title h4 span {
     color: white; 
 }
-
-
     .login_state {
         background-color: #282828;
         border: 1px solid #282828;

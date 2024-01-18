@@ -3,7 +3,11 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Main from './component/Main/main/main';
+
 import Board from './component/Board/Board';  
+import BoardWrite from './component/Board/Board_write';
+import Board_Edit from './component/Board/Board_Edit';
+
 import Introduction from './component/Introduction/introduction';
 import IntroductionId from './component/Introduction/introduction_id';
 import IntroductionWrite from './component/Introduction/introduction_write';
@@ -20,7 +24,6 @@ import TaskWrite from './component/Task/TaskWrite';
 import TaskEdit from './component/Task/TaskEdit';
 import Assignment from './component/Task/Assingment';
 
-import BoardWrite from './component/Board/Board_write';
 
 import Test from './component/Board/Board_test';
 
@@ -33,6 +36,7 @@ function App() {
                     
                     <Route path="/Board" element={<Board />} />
                     <Route path="/BoardWrite" element={<BoardWrite />} />
+                    <Route path="/boardEdit/:id" element={<Board_Edit />} />
 
                     <Route path="/Introduction" element={<Introduction />} />
                     <Route path='/IntroductionWrite' element={<IntroductionWrite />} />

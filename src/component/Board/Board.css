@@ -1,44 +1,13 @@
-/* 스타일 파일 (예: Board.css) */
-
-/* 게시판 제목 스타일 */
-.Board_title {
-  color: skyblue;
-  display: flex;
-  justify-content: center;
-}
-
 /* 공백 div 스타일 */
+
+* {
+  box-sizing: border-box;
+}
+
 .tum {
-  margin-top: 30vh;
+  margin-top: 25vh;
 }
 
-/* 게시판 내용 스타일 */
-.Board_content {
-  color: white;
-  margin-top: 20px;
-}
-
-/* 테이블 스타일 */
-.Board_table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
-
-.Board_table th, .Board_table td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
-}
-
-.Board_table th {
-  background-color: #f2f2f2;
-}
-
-/* 제목 색상 스타일 */
-.ttl {
-  color: black;
-}
 
 /* 모달 스타일 */
 .modal {
@@ -50,6 +19,76 @@
   padding: 20px;
   z-index: 1000;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-radius: 50px;
+  border: 1px solid rgba(242, 152, 39, 0.90);
+  background: rgba(40, 40, 40, 0.90);
+  overflow-y: auto;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+.modal__title {
+  display: flex;
+  justify-content: center;
+  font-size: 2vw;
+}
+
+.modal__day__line {
+  border-top: 1px solid #F29827;
+  margin-top: 10vh;
+  margin-bottom: 2vh;
+}
+
+.madal__userInfo {
+  margin-left: 2vw;
+}
+
+.modal__answer__main {
+  margin-top: 20vh;
+}
+
+.modal__answer__liner {
+  border-top: 1px solid #F29827;
+  margin-bottom: 2vh;
+}
+
+.modal__answer__answer_main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  width: 90%;
+  height: 8vh;
+  border-radius: 30px;
+  background: #282828;
+  box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.50);
+  margin: 10px 10px 10px 5%;
+}
+
+.modal__answer__answer {
+  margin-left: 1.5vw;
+}
+
+.modal__answer__edit {
+  background-color: #282828;
+  border: 1px solid white;
+  color: white;
+  border-radius: 100%;
+  height: 35px;
+  font-size: 10px;
+}
+
+.modal__answer__del {
+  background-color: #282828;
+  color: #FD604B;
+  stroke-width: 2px;
+  border-radius: 100%;
+  border: 1px solid #FD604B;
+  margin: 10px 10px 10px 10px;
+  font-size: 15px;
 }
 
 /* 선택적인 오버레이 스타일 (다른 내용 가리기) */
@@ -60,19 +99,208 @@
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.3);
-  z-index: 999;
+}
+
+.modal__answer__container {
+  display: flex;
+  flex-direction: row;
+  margin-left: 1vw;
+  
+}
+
+.modal__answer__input {
+  width: 35vw;
+  height: 10vh;
+  border-radius: 30px;
+  background: #282828;
+  box-shadow: 4px 4px 50px 0px rgba(0, 0, 0, 0.25);
+}
+
+.modal__answer__input__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__answer__input__main {
+  margin: 1vh 0px 1vh 15vw;
+}
+
+.modal__answer__input {
+  color: white;
+}
+
+.modal__plusAndChange {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5vh;
+}
+
+.modal__add__button {
+  margin: 1vh 0px 0px 1vw;
+  border-radius: 30px;
+  background: #83C586;
+  width: 10vw;
+  height: 5vh;
+  color: #FFF;
+  text-align: center;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.modal__edit__button {
+  margin: 1vh 0px 0px 1vw;
+  border-radius: 30px;
+  background: #83C586;
+  width: 10vw;
+  height: 5vh;
+  color: #FFF;
+  text-align: center;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 
 
 .choice_button {
   display: flex;
   justify-content: space-between;
+  
+}
+
+.Board_main_header_container {
+  display: flex;
+  justify-content: space-around;
+  position: absolute;
+  margin-left: 5vw;
+
 }
 
 .write_button {
-  margin-right: 7vw;
+  position: absolute;
+  margin-left: 93vw; /* 우측 여백이 7vw이므로 전체 화면 너비(100vw)에서 7vw만큼 뺀 값 */
+  background-color: #282828;
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  color: #F29827;
+  border: 1px solid #F29827;
+  border-radius: 100%;
+}
+
+.Board_title {
+  color: #FFF;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-left: 1vw;
+}
+
+.Board_Lion_title {
+  color: #F29827;
+  text-align: center;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.Board_buttons {
+  margin-left: 1vw;
+}
+
+.Board_buttons button {
+  border-radius: 30px;
+  background: #282828;
+  box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.50);
+}
+
+.Board_buttons button:hover {
+  background-color: #F29827;
+}
+
+.board_line {
+  margin-top: 9vh;
+  margin-left: 3vw;
+  margin-right: 3vw;
+}
+
+.Board_table {
+  margin-top: 5vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.swiper-slide {
+  margin-right: 0 !important;
+}
+
+.board_swiper_main_container {
+  border-radius: 30px !important;
+  background-color: #282828 !important;
+  box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.50) !important;
+  margin-bottom: 10px;
+  margin-left: 3vw;
+}
+
+.board_swiper_container {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: center;
+  height: 15vh;
+  color: white;
+}
+
+.board_swiper_left {
+  display: flex;
+  flex-direction: row;
+  margin-left: 1vw;
+}
+
+.board_swiper_right {
+  display: flex;
+  flex-direction: row;
+  margin-left: 1vw;
+}
+
+.board_swiper_left_id {
+  margin-right: 1vw;
+}
+
+.board_swiper_right_id {
+  margin-right: 1vw;
+}
+
+.modal__close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
   text-decoration: none;
-  background-color: white;
-  color: black;
-  font-size: 30px;
+  background-color: #282828;
+  color: white;
+}
+
+.swiper-slide {
+  width: 45%; /* 적절한 값을 선택해보세요 */
+  margin-right: 20px; /* 적절한 여백을 선택해보세요 */
+}
+
+.Board_table {
+  margin-top: 5vh;
+  width: 90%; /* 전체 화면의 80%로 조절해보세요 */
+  overflow: hidden;
+}
+
+.swiper-wrapper {
+  margin-bottom: 10vh;
+  width: 20vh;
 }

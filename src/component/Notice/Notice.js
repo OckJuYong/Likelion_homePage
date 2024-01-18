@@ -2,6 +2,9 @@ import React from 'react';
 import Header from '../Main/header/header';
 import './Notice.css';
 
+import LogoHeader from '../Main/header/LogoHeader';
+import MenuHeader from '../Main/header/MenuHeader';
+
 const executives = [
   {
     role: '프론트엔드',
@@ -23,7 +26,8 @@ const executives = [
 function Notice() {
   return (
     <>
-      <Header />
+      <LogoHeader />
+      <MenuHeader />
       <div className='body_info'>
         <h1 className="main_title">운영진 소개</h1>
         <div className="main_info">

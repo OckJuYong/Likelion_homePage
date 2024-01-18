@@ -1,0 +1,119 @@
+.header_main_container {
+  background: #282828;
+  height: 100vh; /* 뷰포트 높이로 설정 */
+  overflow: hidden; /* 여백이 생성되지 않도록 설정 */
+  color: white;
+  position: relative;
+  padding-left: 20px;
+  margin: 0; /* 부모 요소의 마진을 초기화 */
+}
+
+.close {
+  position: absolute;
+  top: 1vh;
+  left: 2vw;
+  cursor: pointer;
+
+}
+
+.djImg {
+  display: flex;
+  justify-content: center;
+  margin-top: 7vh;
+  margin-bottom: 2vh;
+}
+
+.userInfo {
+  color: #FFF;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 3vh;
+}
+
+.yellow {
+  color: #F29827;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.ButtonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.LogoutButton {
+  width: 10vw;
+  height: 6vh;
+  border-radius: 30px;
+  background: #F29827;
+  margin-bottom: 5vh;
+  color: #FFF;
+  text-align: center;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.sidebar-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2vh; /* 여백을 조절해보세요 */
+  border-radius: 15px;
+  color: white;
+  background-color: #282828;
+  box-shadow: 0px 0px 50px 5px rgba(242, 152, 39, 0.10);
+  width: 30vw;
+  height: 6vh;
+  flex-shrink: 0;
+  color: #FFF;
+  text-align: center;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-decoration: none;
+}
+
+.sidebar-link:hover {
+  background-color: #eee;
+}
+
+.sidebar-toggle-button {
+  float: right;
+  margin: 3vw;
+  padding: 5px 10px;
+  font-size: 16px;
+  background-color: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 100%;
+  fill: #282828;
+  filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.50));
+}
+
+.sidebar-toggle-button:hover {
+  background-color: #555;
+}
+
+.close {
+  margin-top: 2vh;
+  margin-right: 3vw; /* 여백을 조절해보세요 */
+  color: #FD604B;
+  text-align: center;
+  font-family: Inter;
+  font-size: 2vw; /* 여백을 조절해보세요 */
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}

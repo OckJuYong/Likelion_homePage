@@ -4,8 +4,10 @@ import axios from "axios";
 import Header from "../Main/header/header";
 import { useAuth } from "./AuthContext";
 import "./Login.css";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
   const address = "http://192.168.0.4:8080/api/";
   const LoginAddress =
     "https://port-0-djangoproject-umnqdut2blqqevwyb.sel4.cloudtype.app/login/";
@@ -91,6 +93,7 @@ function Login() {
       });
 
       console.log("Login Response:", loginResponse.data);
+      navigate('/');
 
     } catch (error) {
       console.error("Error:", error);

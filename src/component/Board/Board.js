@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Header from '../Main/header/header';
 import axios from 'axios';
 import './Board.css';
 import cookie from "react-cookies";
+
+import 'swiper/swiper-bundle.css';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import LogoHeader from '../Main/header/LogoHeader';
+import MenuHeader from "../Main/header/MenuHeader";
 
 
 function Board() {
@@ -285,61 +290,128 @@ function Board() {
     navigate('/boardWrite', { state: { selectedBoard } });
   };
 
+  //---------------스와이퍼부분
+
+  
+
+  // 상단 슬라이더와 하단 슬라이더에 대한 인스턴스 생성
+
+  const handleSwiper = (swiper) => {
+    if (swiper) {
+      setTopSwiper(swiper);
+      setBottomSwiper(swiper);
+    }
+  };
+
+  const swiperSettings = {
+    spaceBetween: 50,
+    slidesPerView: 2,
+    onSlideChangeTransitionEnd: (swiper) => {
+      // 모든 Swiper 인스턴스에 같은 슬라이드 인덱스를 설정하여 동기화
+      topSwiper.slideTo(swiper.activeIndex);
+      bottomSwiper.slideTo(swiper.activeIndex);
+    },
+    onSwiper: (swiper) => console.log(swiper)
+  };
+
+  const [topSwiper, setTopSwiper] = useState(null);
+  const [bottomSwiper, setBottomSwiper] = useState(null);
+
+  const handleSliderPrev = () => {
+    topSwiper.slidePrev();
+    console.log("top-1");
+    bottomSwiper.slidePrev();
+    console.log("bottom-1");
+
+  };
+
+  const handleSliderNext = () => {
+    topSwiper.slideNext();
+    console.log("top-2");
+
+    bottomSwiper.slideNext();
+    console.log("bottom-2");
+
+  };
+
+
+  //---------------스와이퍼부분
+
   return (
     <>
-      <Header />
+      <LogoHeader />
+      <MenuHeader />
       <div className='tum'></div>
-      <h1 className="Board_title"><span>Lion</span>자유게시판</h1>
       <div className='choice_button'>
-        <div className="Board_buttons">
-          <button onClick={() => handleBoardTypeChange('qna')}>자유게시판</button>
-          <button onClick={() => handleBoardTypeChange('free')}>QnA게시판</button>
-          <label>
-            <input
-              type="checkbox"
-              checked={showMyPosts}
-              onChange={handleMyPostsCheckboxChange}
-            />
-            내가 쓴 글
-          </label>
+        <div className='Board_main_header_container'>
+          <span className='Board_Lion_title'>Lion</span>
+          <span className="Board_title">{`${selectedBoard}게시판`}</span>
+          <div className="Board_buttons">
+            <button onClick={() => handleBoardTypeChange('qna')}>자유게시판</button>
+            <button onClick={() => handleBoardTypeChange('free')}>QnA게시판</button>
+            {/* <label>
+              <input
+                type="checkbox"
+                checked={showMyPosts}
+                onChange={handleMyPostsCheckboxChange}
+              />
+              내가 쓴 글
+            </label> */}
+          </div>
         </div>
-        <button onClick={handleWriteButtonClick} className='write_button'>글 작성</button>
+        <button onClick={handleWriteButtonClick} className='write_button'>+</button>
       </div>
+      <hr className='board_line'/>
       <div className="Board_content">
         {board.length > 0 && (
           <>
-            <h2>{`${selectedBoard} 게시판`}</h2>
-            <table className="Board_table">
-              <thead>
-                <tr className='ttl'>
-                  <th>ID</th>
-                  <th>이름</th>
-                  <th>제목</th>
-                </tr>
-              </thead>
-              <tbody>
-                {board.map((post) => (
-                  <tr key={post.id} onClick={() => handlePostClick(post.id)}>
-                    <td>{post.id}</td>
-                    <td>{post.author ? post.author.name : '알 수 없는 작성자'}</td>
-                    <td>{post.title}</td>
-                    <td>
-                      <button onClick={(event) => deletePost(event)}>삭제</button>
-                      <button onClick={() => navigateToEditPage(post.id)}>수정</button>
-                    </td>
-                  </tr>
+            <div className="Board_table">
+              <Swiper {...swiperSettings} onSwiper={setTopSwiper} spaceBetween={10} slidesPerView={3}>
+                {board.map((post, index) => (
+                  index % 2 === 0 && (
+                  <SwiperSlide key={post.id} className='board_swiper_main_container'>
+                    <div className="board_swiper_container" onClick={() => handlePostClick(post.id)}>
+                      <div className='board_swiper_left'>
+                        <div className='board_swiper_left_id'>{post.id}</div>
+                        <div className='board_swiper_left_title'>{post.title}</div>
+                      </div>
+                      <div>{post.author ? post.author.name : '알 수 없는 작성자'}</div>
+                    </div>
+                  </SwiperSlide>
+                  )
                 ))}
-              </tbody>
-            </table>
+              </Swiper>
+              <Swiper {...swiperSettings} onSwiper={setBottomSwiper} spaceBetween={10} slidesPerView={3}>
+                {board.map((post, index) => (
+                  index % 2 === 1 && (
+                  <SwiperSlide key={post.id} className='board_swiper_main_container'>
+                    <div className="board_swiper_container" onClick={() => handlePostClick(post.id)}>
+                      <div className='board_swiper_right'>
+                      <div className='board_swiper_right_id'>{post.id}</div>
+                        <div className='board_swiper_right_title'>{post.title}</div>
+                      </div>
+                      <div>{post.author ? post.author.name : '알 수 없는 작성자'}</div>
+                    </div>
+                  </SwiperSlide>
+                  )
+                ))}
+              </Swiper>
+            </div>
+            <div className="slider_button_container">
+              <button onClick={handleSliderPrev}>이전</button>
+              <button onClick={handleSliderNext}>다음</button>
+            </div>
+  
             {selectedPost && board.find((post) => post.id === selectedPost) && isModalOpen && (
               <>
                 <div className="overlay" onClick={closeModal}></div>
-                <div className="modal">
-                  <h3>{`게시물 ID: ${selectedPost}`}</h3>
+                <div className="modal"  style={{ width: '50%', height: "80%"}}>
+                  <h3 className='modal__title'>{`${postDetails ? postDetails.title : '불러오는 중...'}`}</h3>
+                  <span></span>
+                  <div className='modal__day__line'></div>
                   {!isEditMode ? (
                     <>
-                      <div>{`게시물 제목: ${postDetails ? postDetails.title : '불러오는 중...'}`}</div>
-                      <div>{`게시물 내용: ${postDetails ? postDetails.content : '불러오는 중...'}`}</div>
+                      <div>{` ${postDetails ? postDetails.content : '불러오는 중...'}`}</div>
                     </>
                   ) : (
                     <>
@@ -357,27 +429,40 @@ function Board() {
                     </>
                   )}
                   <div>
-                    <h3>댓글</h3>
-                    <ul>
+                    <h3 className='modal__answer__main'>댓글</h3>
+                    <div className='modal__answer__liner'></div>
                       {answers.map((answer) => (
-                        <li key={answer.id}>{answer.id}:{answer.content}
-                          <button onClick={() => deleteAnswer(answer.id)}>삭제</button>
-                          <button onClick={() => editevent(answer.id)}>수정</button>
+                        <>
+                        <span className='madal__userInfo'>{answer.id}</span>
+                        <li key={answer.id} className='modal__answer__answer_main'>
+                          <span className='modal__answer__answer'>{answer.content}</span>
+                          <div>
+                            <button className="modal__answer__edit" onClick={() => editevent(answer.id)}>수정</button>
+                            <button className="modal__answer__del" onClick={() => deleteAnswer(answer.id)}>-</button>
+                          </div>
                         </li>
+                        </>
                       ))}
-                    </ul>
-                    <textarea
-                      placeholder="댓글을 입력하세요"
-                      value={comment}
-                      onChange={handleCommentChange}
-                    />
-                    <button onClick={addAnswer}>댓글 작성</button>
-                  </div>
-                  {!isEditMode && (
-                    <button onClick={editComment}>수정 완료</button>
-                  )}
-                  <button onClick={closeModal}>닫기</button>
-                </div>
+                      <div className='modal__answer__container'>
+                        <div className='modal__answer__input__container'>
+                          <span className='modal__answer__input__main'>댓글 작성</span>
+                          <textarea
+                            placeholder="댓글을 입력하세요"
+                            value={comment}
+                            onChange={handleCommentChange}
+                            className='modal__answer__input'
+                          />
+                        </div>
+                        <div className='modal__plusAndChange'>
+                          <button className="modal__add__button" onClick={addAnswer}>ADD</button>
+                          {!isEditMode && (
+                            <button className="modal__edit__button"onClick={editComment}>EDIT</button>
+                          )}
+                        </div>
+                        </div>
+                      </div>
+                    <button className="modal__close-button" onClick={closeModal}>X</button>
+                    </div>
               </>
             )}
           </>

@@ -10,7 +10,6 @@ import './IntroductionWrite.css';
 // import { useAuth } from '../Login/AuthContext';
 
 function IntroductionWrite() {
-  const { loginInfo } = useAuth();
   const student_id = 20201776;
   const address = "https://port-0-likelion-12th-backend-9zxht12blqj9n2fu.sel4.cloudtype.app/";
   
@@ -74,7 +73,7 @@ function IntroductionWrite() {
 
   return (
     <div className="introduction-write-container">
-      <Header />
+      {/* <Header /> */}
       <h1>{id ? 'Edit Notice' : 'Create Notice'}</h1>
       <form onSubmit={handleSubmit}>
         <label>Title:</label>

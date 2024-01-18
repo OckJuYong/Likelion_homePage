@@ -2,14 +2,22 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Header from '../Main/header/header';
 import { Link } from 'react-router-dom';
 import { useParams, useNavigate } from 'react-router-dom';
 import IntroductionEdit from './introductionEdit'; 
-import cookie from "react-cookies";
+import cookie from 'react-cookies';
+import './introduction.css';
+
+import 'swiper/swiper-bundle.css';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Navigation } from 'swiper/core';
+
+import HeaderMenu from '../Main/header/MenuHeader';
+import HeaderLogo from '../Main/header/LogoHeader';
+
+
 
 function Introduction() {
-  const navigate = useNavigate();
   const address = "https://port-0-likelion-12th-backend-9zxht12blqj9n2fu.sel4.cloudtype.app/";
   const accessAddress = "http://192.168.0.4:8080/api/";
 
@@ -21,7 +29,7 @@ function Introduction() {
   const [file, setFile] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState({});
-  const [studentInfo, setStudentInfo] = useState(null); // 수정된 부분
+  const [studentInfo, setStudentInfo] = useState(null);
   const student_id = "20201776";
 
   const setEditingIdInLocalStorage = (id) => {
@@ -45,7 +53,7 @@ function Introduction() {
           { token: savedAccessToken }
         );
         const studentId = getAccessTokenResponse.data.student_id;
-        setStudentInfo(studentId); // 수정된 부분
+        setStudentInfo(studentId);
         console.log('Server Response:', getAccessTokenResponse);
         console.log('Student ID:', studentId);
       } catch (error) {
@@ -65,7 +73,7 @@ function Introduction() {
             { token: refreshTokenResponse.data.access }
           );
 
-          setStudentInfo(refreshedStudentInfoResponse.data.student_id); // 수정된 부분
+          setStudentInfo(refreshedStudentInfoResponse.data.student_id);
           console.log(
             "Refreshed Student Info Response:",
             refreshedStudentInfoResponse.data
@@ -88,7 +96,7 @@ function Introduction() {
     };
 
     fetchData();
-  }, [accessAddress]); // 수정된 부분
+  }, [accessAddress]);
 
   const fetchNotices = async () => {
     try {
@@ -98,6 +106,11 @@ function Introduction() {
     } catch (error) {
       console.error('Error fetching notices:', error);
     }
+  };
+
+  const formatNoticeTime = (rawTime) => {
+    const options = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: false };
+    return new Date(rawTime).toLocaleDateString('ko-KR', options);
   };
 
   useEffect(() => {
@@ -152,51 +165,123 @@ function Introduction() {
     setIsModalOpen(false);
   };
 
-  return (
-    <>
-      <Header />
-      <h1>공지사항 페이지</h1>
-      <ul>
-        {notices.map((notice) => (
-          <li key={notice.id}>
-            <div>
-              <h3>{notice.notice_title}</h3>
-              <span>{notice.notice_time}</span>
-              <button onClick={() => openModal(notice)}>{notice.notice_comment.slice(0, 20)}</button>
-            </div>
-            <Link
-              to={`/edit-notice/${notice.id}`}
-              onClick={() => setEditingIdInLocalStorage(notice.id)}
-            >
-              수정하기
-            </Link>
-            <button onClick={() => handleDelete(notice.id)}>삭제하기</button>
-          </li>
-        ))}
-      </ul>
-      <Link to="/IntroductionWrite">새로운 공지 작성</Link>
+  const swiperSettings = {
+    spaceBetween: 50,
+    slidesPerView: 2,
+    onSlideChangeTransitionEnd: (swiper) => {
+      // 모든 Swiper 인스턴스에 같은 슬라이드 인덱스를 설정하여 동기화
+      topSwiper.slideTo(swiper.activeIndex);
+      bottomSwiper.slideTo(swiper.activeIndex);
+    },
+    onSwiper: (swiper) => console.log(swiper)
+  };
 
-      {isModalOpen && (
-        <div className="modal-overlay">
-          <div className="modal">
-            <h3>{modalData.notice_title}</h3>
-            <p>{modalData.notice_comment}</p>
-            {modalData.fileUrl && (
-              <div>
-                {modalData.fileUrl.endsWith('.pdf') ? (
-                  <embed src={modalData.fileUrl} type="application/pdf" width="600" height="400" />
-                ) : (
-                  <img src={modalData.fileUrl} alt="File" style={{ maxWidth: '100%', maxHeight: '400px' }} />
-                )}
-              </div>
-            )}
-            <button onClick={closeModal}>닫기</button>
+  // 상단 슬라이더와 하단 슬라이더에 대한 인스턴스 생성
+  const [topSwiper, setTopSwiper] = useState(null);
+  const [bottomSwiper, setBottomSwiper] = useState(null);
+
+  const handleSliderPrev = () => {
+    topSwiper.slidePrev();
+    bottomSwiper.slidePrev();
+  };
+
+  const handleSliderNext = () => {
+    topSwiper.slideNext();
+    bottomSwiper.slideNext();
+  };
+
+  return (
+    <div className='parent-div'>
+      {/* ... (기존 코드 생략) */}
+      <HeaderMenu />
+      <HeaderLogo />
+
+      <div className='introduction_main_container'>
+        <div className='intro'>
+          <span className='Lion'>Lion </span>
+          <span>공지사항</span>
+        </div>
+        <hr />
+        <div className="swiper-container">
+          <div className="swiper-wrapper">
+            {/* 상단 슬라이더 */}
+            <Swiper {...swiperSettings} onSwiper={setTopSwiper}>
+              {notices.map((notice, index) => (
+                index % 2 === 0 && (
+                  <SwiperSlide key={notice.id} className='main_introduction' onClick={() => openModal(notice)}>
+                    <div className='sub_introduction'>
+                      <span>{notice.notice_title}</span>
+                      <span>{formatNoticeTime(notice.notice_time)}</span>
+                    </div>
+                    <Link
+                      to={`/edit-notice/${notice.id}`}
+                      onClick={() => setEditingIdInLocalStorage(notice.id)}
+                    >
+                      수정하기
+                    </Link>
+                    <button onClick={() => handleDelete(notice.id)}>삭제하기</button>
+                  </SwiperSlide>
+                )
+              ))}
+            </Swiper>
           </div>
         </div>
-      )}
+        
+        <div className="swiper-container">
+          <div className="swiper-wrapper">
+            {/* 하단 슬라이더 */}
+            <Swiper {...swiperSettings} onSwiper={setBottomSwiper}>
+              {notices.map((notice, index) => (
+                index % 2 === 1 && (
+                  <SwiperSlide key={notice.id} className='main_introduction' onClick={() => openModal(notice)}>
+                    <div className='sub_introduction'>
+                      <span>{notice.notice_title}</span>
+                      <span>{formatNoticeTime(notice.notice_time)}</span>
+                    </div>
+                    <Link
+                      to={`/edit-notice/${notice.id}`}
+                      onClick={() => setEditingIdInLocalStorage(notice.id)}
+                    >
+                      수정하기
+                    </Link>
+                    <button onClick={() => handleDelete(notice.id)}>삭제하기</button>
+                  </SwiperSlide>
+                )
+              ))}
+            </Swiper>
+          </div>
+        </div>
 
-      {editingId && <IntroductionEdit />}
-    </>
+        <div className="button-container">
+          <Link to="/IntroductionWrite">새로운 공지 작성</Link>
+        </div>
+        <div className="slider_button_container">
+          <button onClick={handleSliderPrev}>이전</button>
+          <button onClick={handleSliderNext}>다음</button>
+        </div>
+
+
+        {isModalOpen && (
+          <div className="modal-overlay" onClick={closeModal}>
+            <div className="modal" onClick={(e) => e.stopPropagation()}>
+              <h3>{modalData.notice_title}</h3>
+              <p>{modalData.notice_comment}</p>
+              {modalData.fileUrl && (
+                <div>
+                  {modalData.fileUrl.endsWith('.pdf') ? (
+                    <embed src={modalData.fileUrl} type="application/pdf" width="600" height="400" />
+                  ) : (
+                    <img src={modalData.fileUrl} alt="File" style={{ maxWidth: '100%', maxHeight: '400px' }} />
+                  )}
+                </div>
+              )}
+              <button onClick={closeModal}>닫기</button>
+            </div>
+          </div>
+        )}
+        {editingId && <IntroductionEdit />}
+      </div>
+    </div>
   );
 }
 

@@ -6,6 +6,11 @@ import './Task.css';
 import { Link } from 'react-router-dom';
 import cookie from 'react-cookies';
 
+import LogoHeader from '../Main/header/LogoHeader';
+import MenuHeader from '../Main/header/MenuHeader';
+
+
+
 const Task = () => {
   // const { loginInfo, setLoginInfo } = useAuth();
 
@@ -94,7 +99,8 @@ const Task = () => {
 
   return (
     <>
-      <Header />
+      <LogoHeader />
+      <MenuHeader />
       <div className='task_main_container'>
         <h1>과제 목록</h1>
 
