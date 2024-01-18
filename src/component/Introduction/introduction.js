@@ -198,10 +198,13 @@ function Introduction() {
 
       <div className='introduction_main_container'>
         <div className='intro'>
-          <span className='Lion'>Lion </span>
-          <span>공지사항</span>
+          <div>
+            <span className='Lion'>Lion </span>
+            <span>공지사항</span>
+          </div>
+          <Link to="/IntroductionWrite">+</Link>
         </div>
-        <hr />
+        <div className='intro_line'></div>
         <div className="swiper-container">
           <div className="swiper-wrapper">
             {/* 상단 슬라이더 */}
@@ -252,9 +255,7 @@ function Introduction() {
           </div>
         </div>
 
-        <div className="button-container">
-          <Link to="/IntroductionWrite">새로운 공지 작성</Link>
-        </div>
+
         <div className="slider_button_container">
           <button onClick={handleSliderPrev}>이전</button>
           <button onClick={handleSliderNext}>다음</button>

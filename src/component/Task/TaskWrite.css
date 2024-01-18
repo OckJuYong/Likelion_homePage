@@ -1,0 +1,53 @@
+.task__write__main__container {
+    margin-top: 20vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+label {
+    color: white;
+    margin: 0px 0px 2vh 7vw;
+}
+
+.task__write__weeks {
+    width: 90%;
+    height: 5vh;
+    border-radius: 30px;
+    background: #282828;
+    box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.50);
+    margin: 0px 5vw 3vh 5vw;
+}
+
+.task__write__title {
+    width: 90%;
+    height: 5vh;
+    border-radius: 30px;
+    background: #282828;
+    box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.50);
+    margin: 0px 5vw 3vh 5vw;
+}
+
+.task__write__taskType {
+    border-radius: 30px;
+    background: #282828;
+    box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.50);
+    width: 90%;
+    height: 3vh;
+    margin: 0px 5vw 3vh 5vw;
+    color: white;
+}
+
+.task__write__deadline {
+    display: flex;
+    flex-direction: row;
+    margin: 5vh 0px 5vh 0px;
+}
+
+.task__create__button {
+    border-radius: 30px;
+background: #83C586;
+width: 10vw;
+height: 5vh;
+margin: 0px 45vw 0px 45vw;
+}

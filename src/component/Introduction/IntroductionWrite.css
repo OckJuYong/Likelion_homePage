@@ -1,40 +1,56 @@
 /* IntroductionWrite.css */
 
 .introduction-write-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    margin: 25vh 5vw 0px 5vw;
   }
-  .intro_LogoImg {
-    position: absolute;
+
+  .introduction_title_write_name {
+    color: #FFF;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 3vh;
   }
-  h1 {
-    color: #333333;
-    font-size: 2em;
-    margin-bottom: 20px;
+
+  .introduction_title_write {
+    width: 90vw;
+    height: 8vh;
+    border-radius: 30px;
+    background: #282828;
+    box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.50);
+    margin-bottom: 3vh;
+    color: white;
+  }
+
+  .introduction_content_write_name {
+    color: #FFF;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 3vh;
+  }
+
+  .introduction_content_write {
+    border-radius: 30px;
+    height: 30vh;
+    background: #282828;
+    box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.50);
+    color: white;
+    padding: 10px;
+
   }
   
   form {
     display: flex;
     flex-direction: column;
   }
-  
-  label {
-    font-size: 1.2em;
-    margin-bottom: 10px;
-  }
-  
-  input,
-  textarea {
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1em;
-  }
+
+
   
   .button-container {
     display: flex;
@@ -63,4 +79,35 @@
     height: 20vh;
     border-radius: 10px;
     background-color: #434343;
+  }
+
+  .file_container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .file_img {
+    width: 2vw;
+    margin: 3vh 0px 0px 2vw;
+  }
+
+  .FIle_name {
+    color: #FFF;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 3.5vh 0px 1vh 1vw;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .submit-button {
+    border-radius: 30px;
+    background: #83C586;
   }

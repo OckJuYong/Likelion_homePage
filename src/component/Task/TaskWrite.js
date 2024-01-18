@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import axios from 'axios'; 
 import { useNavigate } from 'react-router-dom';
 
+import './TaskWrite.css';
+
+import LogoHeader from '../Main/header/LogoHeader';
+import MenuHeader from '../Main/header/MenuHeader';
+
 
 const TaskWrite = () => {
   const address = "https://port-0-likelion-12th-backend-9zxht12blqj9n2fu.sel4.cloudtype.app";
@@ -34,53 +39,51 @@ const TaskWrite = () => {
 
   return (
     <div>
-      <h2>과제 생성</h2>
-      <form>
-        <label>
-          주차:
-          <input
-            type="text"
-            value={newAssignmentData.weeks || ''}
-            onChange={(e) => setNewAssignmentData({ ...newAssignmentData, weeks: e.target.value })}
-          />
-        </label>
-        <label>
-          과제 타입:
-          <select
-            value={newAssignmentData.assignment_type || 'C'}
-            onChange={(e) => setNewAssignmentData({ ...newAssignmentData, assignment_type: e.target.value })}
-          >
-            <option value="C">C</option>
-            <option value="F">F</option>
-            <option value="B">B</option>
-          </select>
-        </label>
-        <label>
-          과제 제목:
-          <input
-            type="text"
-            value={newAssignmentData.assignment_title || ''}
-            onChange={(e) => setNewAssignmentData({ ...newAssignmentData, assignment_title: e.target.value })}
-          />
-        </label>
-        <label>
-          마감 날짜:
-          <input
-            type="date"
-            value={newAssignmentData.deadlineDate || ''}
-            onChange={(e) => setNewAssignmentData({ ...newAssignmentData, deadlineDate: e.target.value })}
-          />
-        </label>
-        <label>
-          마감 시간:
-          <input
-            type="time"
-            value={newAssignmentData.deadlineTime || ''}
-            onChange={(e) => setNewAssignmentData({ ...newAssignmentData, deadlineTime: e.target.value })}
-          />
-        </label>
-      </form>
-      <button onClick={handleCreateAssignment}>새로운 과제 생성</button>
+      <LogoHeader />
+      <MenuHeader />
+      <div className='task__write__main__container'>
+        <form>
+          <label>주차</label>
+            <input
+              className='task__write__weeks'
+              type="text"
+              value={newAssignmentData.weeks || ''}
+              onChange={(e) => setNewAssignmentData({ ...newAssignmentData, weeks: e.target.value })}
+            />
+          <label>과제 제목</label>
+            <input
+              className='task__write__title'
+              type="text"
+              value={newAssignmentData.assignment_title || ''}
+              onChange={(e) => setNewAssignmentData({ ...newAssignmentData, assignment_title: e.target.value })}
+            />
+            <label>분반</label>
+            <select
+              className='task__write__taskType'
+              value={newAssignmentData.assignment_type || 'C'}
+              onChange={(e) => setNewAssignmentData({ ...newAssignmentData, assignment_type: e.target.value })}
+            >
+              <option className="option_C" value="C">공통</option>
+              <option value="F">프론트엔드</option>
+              <option value="B">백엔드</option>
+            </select>
+            <div className='task__write__deadline'>
+              <label>마감 날짜:</label>
+                <input
+                  type="date"
+                  value={newAssignmentData.deadlineDate || ''}
+                  onChange={(e) => setNewAssignmentData({ ...newAssignmentData, deadlineDate: e.target.value })}
+                />
+              <label>마감 시간:</label>
+                <input
+                  type="time"
+                  value={newAssignmentData.deadlineTime || ''}
+                  onChange={(e) => setNewAssignmentData({ ...newAssignmentData, deadlineTime: e.target.value })}
+                />
+            </div>
+        </form>
+        <button className='task__create__button' onClick={handleCreateAssignment}>ADD</button>
+      </div>
     </div>
   );
 };

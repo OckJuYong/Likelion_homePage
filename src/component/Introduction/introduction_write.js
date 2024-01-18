@@ -7,7 +7,13 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import './IntroductionWrite.css'; 
+import File_img from './image 3.png';
 // import { useAuth } from '../Login/AuthContext';
+
+import MenuHeader from '../Main/header/MenuHeader';
+import LogoHeader from '../Main/header/LogoHeader';
+
+
 
 function IntroductionWrite() {
   const student_id = 20201776;
@@ -70,16 +76,31 @@ function IntroductionWrite() {
       console.error('Error deleting notice:', error);
     }
   };
+  const handleFileUpload = () => {
+    // 파일 업로드를 실행하는 로직을 추가합니다.
+    // 예를 들어, 클릭 시 input[type="file"] 엘리먼트를 클릭하는 방식을 사용할 수 있습니다.
+    const fileInput = document.getElementById('fileInput');
+    fileInput.click();
+  };
 
   return (
+    <>    
+    <MenuHeader />
+    <LogoHeader />
     <div className="introduction-write-container">
       {/* <Header /> */}
-      <h1>{id ? 'Edit Notice' : 'Create Notice'}</h1>
       <form onSubmit={handleSubmit}>
-        <label>Title:</label>
-        <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
+        <label className='introduction_title_write_name'>공지사항 제목</label>
+        <input className="introduction_title_write" type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
 
-        <label>Content:</label>
+        <label className='introduction_content_write_name'>공지사항 내용</label>
+        <textarea
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+          className='introduction_content_write'
+          rows={10} // 원하는 높이로 조절
+        />
+        {/* <label>공지사항 내용</label>
         <CKEditor
           editor={ClassicEditor}
           data={content}
@@ -87,14 +108,22 @@ function IntroductionWrite() {
             const data = editor.getData();
             setContent(data);
           }}
-        />
+        /> */}
 
         {/* 추가: 파일 업로드 */}
-        <label>File:</label>
-        <input type="file" onChange={(e) => setFile(e.target.files[0])} />
-
-
-
+        <div className="file-upload-container">
+          <div className='file_container'>
+            <img className="file_img" src={File_img} onClick={handleFileUpload} />
+            <span className='FIle_name'>FILE</span>
+          </div>
+          <input
+            id="fileInput"
+            type="file"
+            onChange={(e) => setFile(e.target.files[0])}
+            style={{ display: 'none' }}
+          />
+        </div>
+        
         <div className="button-container">
           <button type="submit" className="submit-button">
             {id ? 'Edit' : 'Create'}
@@ -107,6 +136,7 @@ function IntroductionWrite() {
         </div>
       </form>
     </div>
+    </>
   );
 }
 

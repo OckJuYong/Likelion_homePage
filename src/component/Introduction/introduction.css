@@ -4,6 +4,10 @@
     margin-top: 25vh;
     margin-left: 3vw;
     margin-right: 3vw;
+    position: relative;
+}
+.button-container {
+    margin: 0px ;
 }
 
 .intro {
@@ -15,6 +19,27 @@
     line-height: normal;
     margin-left: 2vw;
     margin-bottom: 2vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.intro a {
+    text-decoration: none;
+    width: 3vw;
+    height: 5vh;
+    color: #F29827;
+    border: 1px solid #F29827;
+    border-radius: 100%;
+    font-size: 2vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.intro_line {
+    border-top: 1px solid #F29827;
+    margin: 3vh 0px 0px 0px;
 }
 
 .Lion {
