@@ -13,7 +13,8 @@ import MenuHeader from "../header/MenuHeader";
 function Main() {
   const navigate = useNavigate();
   const LoginAddress =
-  "https://port-0-djangoproject-umnqdut2blqqevwyb.sel4.cloudtype.app/login/";
+  // "https://port-0-djangoproject-umnqdut2blqqevwyb.sel4.cloudtype.app/login/";
+  "http://15.164.190.171/login/";
   const [accessToken, setAccessToken] = useState(null);
   const [refreshToken, setRefreshToken] = useState(null);
   const [userInfo, setUserInfo] = useState([]);
@@ -95,21 +96,24 @@ function Main() {
     <div className="main_container">
       {/* <MenuHeader /> */}
       <LogoHeader />
-      <div className="User_container">
-        <div className="Lion_info">
-          <span className="yellow">Lion </span>
-          <span className="Info"> Info</span>
+      <div className="User__main__container">
+        <div className="Lion__info__container">
+          <span className="user__yellow">Lion </span>
+          <span className="user__Info"> Info</span>
         </div>
         <div className="UserMainInfo">
           <span>School : HBNU</span>
           <span>Student_Number : {studentId}</span>
           <span>Name : {userName}</span>
           <span> Division : {userDivision}</span>
-          <a href="http://localhost:3000/info">
+          <a href="http://localhost:3000/notice">
             <img src={MyInfoImg} alt="ImfoLofo" className="MyInfoImg" />
           </a>
         </div>
-        <button className="Logout_button" onClick={LogoutHeandler}>LOGOUT</button>
+        <button className="Logout_button" onClick={LogoutHeandler}>
+          {accessToken ? 'LOGOUT' : 'LOGIN'}
+        </button>
+
 
         
       </div>

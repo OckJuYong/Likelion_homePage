@@ -10,9 +10,13 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import LogoHeader from '../Main/header/LogoHeader';
 import MenuHeader from "../Main/header/MenuHeader";
 
+import leftButton from './left.png';
+import rightButton from './right.png';
+
 
 function Board() {
-  const studentId = parseInt('20201111', 10);
+  let studentId = parseInt('20201111', 10);
+  let [jjinStudentId, setJjinStudentId] = useState(null);
   const [selectedBoard, setSelectedBoard] = useState('qna');
   const [selectedPost, setSelectedPost] = useState(null);
   const [comment, setComment] = useState('');
@@ -31,22 +35,30 @@ function Board() {
   useEffect(() => {
     const fetchBoardData = async () => {
       try {
-        const response = await axios.get(`${address}/?student_id=${showMyPosts ? studentId : ''}`);
-        setBoard(response.data);
+        const response = await axios.get(`${address}/?student_id=${showMyPosts ? student_Id : ''}&ordering=-id`);
+        setBoard(response.data.reverse());
+        console.log("변환성공");
+        if (board[0].id < board[1].id) {
+          setBoard(response.data.reverse());
+        }
       } catch (error) {
         console.error('게시판 데이터를 불러오는 중 오류 발생:', error);
       }
     };
     fetchBoardData();
-  }, [showMyPosts, address, studentId]);
+  }, [showMyPosts]);
 
   //----------------------------------------
 
   const [userName, setUserName] = useState(null);
   const [userDivision, setUserDivision] = useState(null);
   const [student_Id, setStudent_Id] = useState(null);
+  studentId = parseInt(student_Id, 10)
+  setJjinStudentId = studentId;
   
-  const LoginAddress = "https://port-0-djangoproject-umnqdut2blqqevwyb.sel4.cloudtype.app/login/";
+  const LoginAddress = 
+  // "https://port-0-djangoproject-umnqdut2blqqevwyb.sel4.cloudtype.app/login/";
+  "http://15.164.190.171/login/";
 
   const [accessToken, setAccessToken] = useState(null);
   const [refreshToken, setRefreshToken] = useState(null);
@@ -69,13 +81,11 @@ function Board() {
           }
         );
   
-        console.log("Get Access Token Response:", getAccessTokenResponse.data);
         setUserName(getAccessTokenResponse.data.name);
         setUserDivision(getAccessTokenResponse.data.division);
         setStudent_Id(getAccessTokenResponse.data.username)
-        console.log(getAccessTokenResponse.data.name, getAccessTokenResponse.data.division, getAccessTokenResponse.data.username);
+        console.log(student_Id);
         
-        console.log("Access Token:", getAccessTokenResponse.data.access);
         cookie.save("accessToken", getAccessTokenResponse.data.access, {
           path: "/",
           expires: new Date(getAccessTokenResponse.data.expires),
@@ -97,8 +107,6 @@ function Board() {
       setAccessToken(savedAccessToken);
       setRefreshToken(savedRefreshToken);
 
-      console.log('Access Token from Cookie:', savedAccessToken);
-      console.log('Refresh Token from Cookie:', savedRefreshToken);
 
       // Assuming fetchData is a function that you've defined elsewhere
       // await fetchData(accessAddress, savedAccessToken, savedRefreshToken, setAccessToken, setRefreshToken);
@@ -126,6 +134,9 @@ function Board() {
       try {
         const response = await axios.get(`${address}/`);
         setBoard(response.data);
+        console.log(response.data);
+        console.log("여가애요 아저씨");
+        console.log(board);
         console.log(address);
       } catch (error) {
         console.error('게시판 데이터를 불러오는 중 오류 발생:', error);
@@ -333,22 +344,24 @@ function Board() {
     console.log("bottom-2");
 
   };
-
+  console.log();
 
   //---------------스와이퍼부분
 
   return (
     <>
-      <LogoHeader />
-      <MenuHeader />
+      <div  className="board__logoHeader">
+        <LogoHeader />
+        <MenuHeader />
+      </div>
       <div className='tum'></div>
       <div className='choice_button'>
         <div className='Board_main_header_container'>
           <span className='Board_Lion_title'>Lion</span>
-          <span className="Board_title">{`${selectedBoard}게시판`}</span>
+          <span className="Board__title">{`${selectedBoard}게시판`}</span>
           <div className="Board_buttons">
-            <button onClick={() => handleBoardTypeChange('qna')}>자유게시판</button>
-            <button onClick={() => handleBoardTypeChange('free')}>QnA게시판</button>
+            <button className="board__qna__button" onClick={() => handleBoardTypeChange('qna')}>QnA게시판</button>
+            <button className="board__free__button" onClick={() => handleBoardTypeChange('free')}>자유게시판</button>
             {/* <label>
               <input
                 type="checkbox"
@@ -367,7 +380,46 @@ function Board() {
           <>
             <div className="Board_table">
               <Swiper {...swiperSettings} onSwiper={setTopSwiper} spaceBetween={10} slidesPerView={3}>
-                {board.map((post, index) => (
+                {board[0].id < board[1].id ?
+                  board.reverse().map((post, index) => (
+                    index % 2 === 0 && (
+                    <SwiperSlide key={post.id} className='board_swiper_main_container'>
+                      <div className="board_swiper_container" onClick={() => handlePostClick(post.id)}>
+                        <div className='board_swiper_left'>
+                          <div className='board_swiper_left_id'>{post.id}</div>
+                          <div className='board_swiper_left_title'>{post.title}{post.content}</div>
+                        </div>
+                          <div className='board__write__name'>
+                            {post.author ? post.author.name : '알 수 없는 작성자'}
+                            <div className='board__write__time'>
+                              {post.created_at.split('T')[0]}
+                            </div>
+                          </div>
+                          <div>
+                          <div className='board__del__edit__button'>
+                            {userDivision === "admin" ? (
+                              <button className="board__admin__del__button" onClick={(event) => deletePost(event)}>
+                                ❌
+                              </button>
+                            ) : (
+                              null 
+                            )}
+                          </div>
+                          <div>
+                            {userDivision === "admin" || post.author.student_id == student_Id ? (
+                              <button className="board__admin__edit__button" onClick={() => navigateToEditPage(post.id)}>
+                                🔨
+                              </button>
+                            ) : (
+                              null
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                  )
+                )) :
+                board.map((post, index) => (
                   index % 2 === 0 && (
                   <SwiperSlide key={post.id} className='board_swiper_main_container'>
                     <div className="board_swiper_container" onClick={() => handlePostClick(post.id)}>
@@ -375,11 +427,37 @@ function Board() {
                         <div className='board_swiper_left_id'>{post.id}</div>
                         <div className='board_swiper_left_title'>{post.title}</div>
                       </div>
-                      <div>{post.author ? post.author.name : '알 수 없는 작성자'}</div>
+                        <div className='board__write__name'>
+                          {post.author ? post.author.name : '알 수 없는 작성자'}
+                          <div className='board__write__time'>
+                            {post.created_at.split('T')[0]}
+                          </div>
+                        </div>
+                        <div>
+                        <div className='board__del__edit__button'>
+                          {userDivision === "admin" ? (
+                            <button className="board__admin__del__button" onClick={(event) => deletePost(event)}>
+                              ❌
+                            </button>
+                          ) : (
+                            null 
+                          )}
+                        </div>
+                        <div>
+                          {userDivision === "admin" || post.author.student_id == student_Id ? (
+                            <button className="board__admin__edit__button" onClick={() => navigateToEditPage(post.id)}>
+                              🔨
+                            </button>
+                          ) : (
+                            null
+                          )}
+                        </div>
+                      </div>
                     </div>
                   </SwiperSlide>
-                  )
-                ))}
+                )
+              ))
+                }
               </Swiper>
               <Swiper {...swiperSettings} onSwiper={setBottomSwiper} spaceBetween={10} slidesPerView={3}>
                 {board.map((post, index) => (
@@ -390,7 +468,32 @@ function Board() {
                       <div className='board_swiper_right_id'>{post.id}</div>
                         <div className='board_swiper_right_title'>{post.title}</div>
                       </div>
-                      <div>{post.author ? post.author.name : '알 수 없는 작성자'}</div>
+                      <div className='board__write__name'>
+                          {post.author ? post.author.name : '알 수 없는 작성자'}
+                          <div className='board__write__time'>
+                            {post.created_at.split('T')[0]}
+                          </div>
+                        </div>
+                        <div>
+                        <div className='board__del__edit__button'>
+                          {userDivision === "admin" ? (
+                            <button className="board__admin__del__button" onClick={(event) => deletePost(event)}>
+                              ❌
+                            </button>
+                          ) : (
+                            null 
+                          )}
+                        </div>
+                        <div>
+                          {userDivision === "admin" || post.author.student_id == student_Id ? (
+                            <button className="board__admin__edit__button" onClick={() => navigateToEditPage(post.id)}>
+                              🔨
+                            </button>
+                          ) : (
+                            null
+                          )}
+                        </div>
+                      </div>
                     </div>
                   </SwiperSlide>
                   )
@@ -398,8 +501,8 @@ function Board() {
               </Swiper>
             </div>
             <div className="slider_button_container">
-              <button onClick={handleSliderPrev}>이전</button>
-              <button onClick={handleSliderNext}>다음</button>
+              <button onClick={handleSliderPrev}><img className="slider__left__button" src={leftButton} /></button>
+              <button onClick={handleSliderNext}><img src={rightButton} /></button>
             </div>
   
             {selectedPost && board.find((post) => post.id === selectedPost) && isModalOpen && (

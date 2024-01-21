@@ -58,8 +58,19 @@ function Board_Write() {
   const [userName, setUserName] = useState(null);
   const [userDivision, setUserDivision] = useState(null);
   const [student_Id, setStudent_Id] = useState(null);
+
+  useEffect(() => {
+    setMovieContent({
+      student_id: student_Id,  // 변수로 직접 사용, 중괄호 제거
+      title: '',
+      content: '',
+    });
+  }, [student_Id]);
+  console.log(setMovieContent.student_Id);
   
-  const LoginAddress = "https://port-0-djangoproject-umnqdut2blqqevwyb.sel4.cloudtype.app/login/";
+  const LoginAddress = 
+  // "https://port-0-djangoproject-umnqdut2blqqevwyb.sel4.cloudtype.app/login/";
+  "http://15.164.190.171/login/";
 
   const [accessToken, setAccessToken] = useState(null);
   const [refreshToken, setRefreshToken] = useState(null);
@@ -87,7 +98,11 @@ function Board_Write() {
         setUserDivision(getAccessTokenResponse.data.division);
         setStudent_Id(getAccessTokenResponse.data.username)
         console.log(getAccessTokenResponse.data.name, getAccessTokenResponse.data.division, getAccessTokenResponse.data.username);
-        
+        setMovieContent((prevContent) => ({
+          ...prevContent,
+          student_id: parseInt(getAccessTokenResponse.data.username, 10),
+        }));
+        console.log(movieContent);
         console.log("Access Token:", getAccessTokenResponse.data.access);
         cookie.save("accessToken", getAccessTokenResponse.data.access, {
           path: "/",
@@ -129,6 +144,7 @@ function Board_Write() {
         title: movieContent.title,
         content: movieContent.content,
       });
+      console.log(movieContent);
       console.log(response.data);
 
       setIsEditMode(false);
@@ -146,7 +162,7 @@ function Board_Write() {
     setIsEditMode(false);
     setEditingPostId(null);
     setMovieContent({
-      student_id: 20201738,
+      student_id: {student_id},
       title: '',
       content: '',
     });

@@ -7,8 +7,13 @@ import axios from 'axios';
 import dj from './image 2.png';
 import menubar from './menubar.png';
 
+import { useNavigate } from 'react-router-dom';
+
+
 const MenuHeader = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const navigate = useNavigate();
+
 
   const onSetSidebarOpen = (open) => {
     setSidebarOpen(open);
@@ -38,9 +43,7 @@ const MenuHeader = () => {
           }
         );
 
-        console.log("Get Access Token Response:", getAccessTokenResponse.data);
 
-        console.log("Access Token:", getAccessTokenResponse.data.access);
         cookie.save("accessToken", getAccessTokenResponse.data.access, {
           path: "/",
           expires: new Date(getAccessTokenResponse.data.expires),
@@ -62,8 +65,6 @@ const MenuHeader = () => {
       setAccessToken(savedAccessToken);
       setRefreshToken(savedRefreshToken);
 
-      console.log('Access Token from Cookie:', savedAccessToken);
-      console.log('Refresh Token from Cookie:', savedRefreshToken);
 
       // Assuming fetchData is a function that you've defined elsewhere
       // await fetchData(accessAddress, savedAccessToken, savedRefreshToken, setAccessToken, setRefreshToken);
@@ -71,6 +72,11 @@ const MenuHeader = () => {
 
     fetchDataWrapper();
   }, []);
+  const Logout__button = () => {
+
+
+    navigate('/login');
+  } 
 
   return (
     <Sidebar
@@ -87,15 +93,12 @@ const MenuHeader = () => {
               <span>님 반갑습니다</span>
             </div>
             <div className='ButtonContainer'>
-              <button className='LogoutButton'>LOGOUT</button>
+              <button className='LogoutButton' onClick={Logout__button}>LOGOUT</button>
             </div>
           </div>
           <div className="link_header">
             <Link to="/Board" className="sidebar-link">
               게시판
-            </Link>
-            <Link to="/info" className="sidebar-link">
-              내정보
             </Link>
             <Link to="/Introduction" className="sidebar-link">
               공지사항

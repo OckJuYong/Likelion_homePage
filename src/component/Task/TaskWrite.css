@@ -17,6 +17,7 @@ label {
     background: #282828;
     box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.50);
     margin: 0px 5vw 3vh 5vw;
+    color: white;
 }
 
 .task__write__title {
@@ -26,6 +27,7 @@ label {
     background: #282828;
     box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.50);
     margin: 0px 5vw 3vh 5vw;
+    color: white;
 }
 
 .task__write__taskType {
@@ -36,6 +38,7 @@ label {
     height: 3vh;
     margin: 0px 5vw 3vh 5vw;
     color: white;
+    
 }
 
 .task__write__deadline {

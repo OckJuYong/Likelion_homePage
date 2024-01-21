@@ -1,0 +1,7 @@
+.canvas__line {
+    position: absolute;
+    width: 150px;
+    height: 2px;
+    background-color: black;
+}
+

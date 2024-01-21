@@ -10,7 +10,8 @@ function Login() {
   const navigate = useNavigate();
   const address = "http://192.168.0.4:8080/api/";
   const LoginAddress =
-    "https://port-0-djangoproject-umnqdut2blqqevwyb.sel4.cloudtype.app/login/";
+    // "https://port-0-djangoproject-umnqdut2blqqevwyb.sel4.cloudtype.app/login/";
+    "http://15.164.190.171/login/";
   const { setLoginInfo } = useAuth();
   const expires = new Date();
 
@@ -40,11 +41,9 @@ function Login() {
         }
       );
 
-      console.log("Get Access Token Response:", getAccessTokenResponse.data);
 
       // setAccessToken(getAccessTokenResponse.data.access);
 
-      console.log("Access Token:", getAccessTokenResponse.data.access);
       cookie.save("accessToken", getAccessTokenResponse.data.access, {
         path: "/",
         expires: new Date(getAccessTokenResponse.data.access),
@@ -77,7 +76,6 @@ function Login() {
           password: userData.password,
         }
       );
-      console.log("Server Response:", loginResponse.data);
 
       setAccessToken(loginResponse.data.access);
       setRefreshToken(loginResponse.data.refresh);
@@ -92,7 +90,6 @@ function Login() {
         expires: new Date(loginResponse.data.refresh),
       });
 
-      console.log("Login Response:", loginResponse.data);
       navigate('/');
 
     } catch (error) {

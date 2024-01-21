@@ -23,9 +23,6 @@ function Header() {
         <Link to="/Board" className="board" >
           게시판
         </Link>
-        <Link to="/info" className="info">
-          내정보
-        </Link>
         <Link to="/Introduction" className="introduction">
           공지사항
         </Link>

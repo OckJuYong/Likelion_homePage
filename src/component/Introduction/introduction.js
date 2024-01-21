@@ -12,6 +12,9 @@ import 'swiper/swiper-bundle.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation } from 'swiper/core';
 
+import leftButton from '../Board/left.png';
+import rightButton from '../Board/right.png';
+
 import HeaderMenu from '../Main/header/MenuHeader';
 import HeaderLogo from '../Main/header/LogoHeader';
 
@@ -257,9 +260,9 @@ function Introduction() {
 
 
         <div className="slider_button_container">
-          <button onClick={handleSliderPrev}>이전</button>
-          <button onClick={handleSliderNext}>다음</button>
-        </div>
+              <button onClick={handleSliderPrev}><img className="slider__left__button" src={leftButton} /></button>
+              <button onClick={handleSliderNext}><img src={rightButton} /></button>
+            </div>
 
 
         {isModalOpen && (

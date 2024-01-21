@@ -17,7 +17,8 @@ import LogoHeader from '../Main/header/LogoHeader';
 
 function IntroductionWrite() {
   const student_id = 20201776;
-  const address = "https://port-0-likelion-12th-backend-9zxht12blqj9n2fu.sel4.cloudtype.app/";
+  const address = 
+  "https://port-0-likelion-12th-backend-9zxht12blqj9n2fu.sel4.cloudtype.app/";
   
   const { id } = useParams();
   const navigate = useNavigate();

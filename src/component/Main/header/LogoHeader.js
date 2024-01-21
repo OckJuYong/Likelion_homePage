@@ -60,8 +60,6 @@ function LogoHeader()  {
       getAccessToken();
     }, []);
     useEffect(() => {
-      console.log("userInfo: ", userInfo);
-      console.log("userDivision, studentId, userName: ", userDivision, studentId, userName);
       serUserDivision(userDivision)
       setStudentId(studentId)
       setUserName(userName)
