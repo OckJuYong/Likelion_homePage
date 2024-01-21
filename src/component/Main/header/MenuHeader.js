@@ -121,7 +121,7 @@ const MenuHeader = () => {
         className="sidebar-toggle-button"
         onClick={() => onSetSidebarOpen(true)}
       >
-        <img src={menubar}/>
+        <img className="bugger_menu_bar" src={menubar}/>
       </button>
     </Sidebar>
   );

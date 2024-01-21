@@ -2,7 +2,6 @@ body {
     margin: 0;
     padding: 0;
     height: 50vh;
-    
   }
   
   .background-image {
@@ -13,8 +12,8 @@ body {
 
   .Logo_userName {
     position: absolute;
-    top: 60%;
-    left: calc(7vw + 2vw);
+    top: 58%;
+    left: 10vw;
     transform: translateY(-50%);
     color: #fff;
     white-space: nowrap;
@@ -28,8 +27,8 @@ body {
   }
   
   .lion-logo {
-    width: 5vw; /* 이미지 너비 조절 */
-    margin-left: 3vw;
+    width: 7vw; 
+    margin-left: 2vw;
     margin-top: 3vh;
   }
     
@@ -37,7 +36,8 @@ body {
     position: absolute;
     bottom: 0;
     left: 5.5vw;
-    top: 13vh;
+    font-size: 10px;
+    top: 15vh;
     transform: translateX(-50%);
     color: #fff;
     white-space: nowrap;
@@ -48,6 +48,7 @@ body {
 }
   .Logo_bottom .yellow {
     color: #F29827;
+    font-size: 12px;
   }
   
   .Logo_bottom .red {
