@@ -1,0 +1,87 @@
+.Task__edit__main__container {
+    position: relative;
+    top: 25vh;
+    margin: 0px 7vw 0px 7vw;
+}
+
+.Task__edit__header__title {
+    color: #FFF;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.task__edit__header__weeks {
+    border-radius: 30px;
+    background: #282828;
+    box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.50);
+    padding: 10px;
+}
+
+.task__edit__header__write {
+    margin-left: 1.5vw;
+    color: #FFF;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.task__input__form {
+
+}
+
+.file__input__label {
+    position: absolute;
+    top: 20vh;
+    margin-left: 2vw;
+    
+}
+  
+  .task__input__form {
+    /* 파일 input을 화면에서 숨김 */
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+  
+  .file_input_image {
+    /* 이미지 스타일링 */
+    width: 30px; /* 이미지의 크기를 조절하거나 다른 스타일을 추가하세요 */
+    /* 다른 스타일 속성을 추가하여 이미지를 원하는대로 스타일링하세요 */
+  }
+
+  .file__input__name {
+    color: #FFF;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    position: absolute;
+    margin: 1.2vh 0px 0vw 1vw;
+  }
+
+  .task__plus__button {
+    margin-top: 45vh;
+    width: 10vw;
+    height: 7vh;
+    margin-left: 40vw;
+    border-radius: 30px;
+    background: #83C586;
+  }
+
+  .task__add__button {
+    color: #FFF;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+  }

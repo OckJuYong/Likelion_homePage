@@ -45,7 +45,7 @@ function Board() {
       }
     };
     fetchBoardData();
-  }, [showMyPosts]);
+  }, [showMyPosts, address, studentId]);
 
   //----------------------------------------
 
@@ -146,6 +146,8 @@ function Board() {
     try {
       const response = await axios.get(`${address}/${postId}/`);
       setPostDetails(response.data);
+      console.log(response.data);
+      console.log("여기맞제?");
 
       const answerResponse = await axios.get(`${address}/${postId}/answers/`);
       setAnswers(answerResponse.data);
@@ -175,6 +177,7 @@ function Board() {
   };
 
   const addAnswer = async () => {
+    fetchPostDetails
     if (selectedPost && comment.trim() !== '') {
       try {
         await axios.post(`${address}/${selectedPost}/answers/`, {
@@ -183,6 +186,7 @@ function Board() {
         });
         const response = await axios.get(`${address}/${selectedPost}/answers/`);
         const getanswerdata = response.data;
+        console.log(response.data);
 
         setAnswers(getanswerdata);
 
@@ -317,14 +321,12 @@ function Board() {
   };
 
   const slickSettings = {
-    dots: true,
+    dots: false,
     slidesToShow: 1,
     slidesToScroll: 1,
     slidesPerRow: 4, 
-    arrows: true, 
-    infinite: true,
+    arrows: false, 
     infinite: false,
-    dots: true,
     responsive: [
       {
         breakpoint: 768,
@@ -351,14 +353,6 @@ function Board() {
           <div className="Board_buttons">
             <button className="board__qna__button" onClick={() => handleBoardTypeChange('qna')}>QnA게시판</button>
             <button className="board__free__button" onClick={() => handleBoardTypeChange('free')}>자유게시판</button>
-            {/* <label>
-              <input
-                type="checkbox"
-                checked={showMyPosts}
-                onChange={handleMyPostsCheckboxChange}
-              />
-              내가 쓴 글
-            </label> */}
           </div>
         </div>
         <button onClick={handleWriteButtonClick} className='write_button'>+</button>
@@ -387,9 +381,9 @@ function Board() {
                             {post.created_at.split('T')[0]}
                           </div>
                         </div>
-                        <div>
+                        <div className='gimojji'>
                           <div className='board__del__edit__button'>
-                            {userDivision === "admin" ? (
+                            {userDivision === "front admin" ? (
                               <button className="board__admin__del__button" onClick={(event) => deletePost(event)}>
                                 ❌
                               </button>
@@ -398,7 +392,7 @@ function Board() {
                             )}
                           </div>
                           <div>
-                            {userDivision === "admin" || post.author.student_id === student_Id ? (
+                            {userDivision === "front admin" || post.author.student_id === student_Id ? (
                               <button className="board__admin__edit__button" onClick={() => navigateToEditPage(post.id)}>
                                 🔨
                               </button>
@@ -408,6 +402,7 @@ function Board() {
                           </div>
                         </div>
                       </div>
+                      {/* 원 나갔지롱 */}
                     </div>
                   )) : 
                   board.reverse().map((post, index) => (
@@ -451,12 +446,18 @@ function Board() {
               </Slider>
             </div>
 
-  
             {selectedPost && board.find((post) => post.id === selectedPost) && isModalOpen && (
               <>
                 <div className="overlay" onClick={closeModal}></div>
-                <div className="modal"  style={{ width: '50%', height: "80%"}}>
-                  <h3 className='modal__title'>{`${postDetails ? postDetails.title : '불러오는 중...'}`}</h3>
+                <div className={`modal ${postDetails && postDetails.answers.length > 3 ? 'with-scroll' : ''}`} style={{ width: '51%', height: '75%' }}>
+                  <div className='modal__header__title'>
+                    <h3 className='modal__title'>{`${postDetails ? postDetails.title : '불러오는 중...'}`}</h3>
+                    <div className='modal__creat__time'>
+                      <span>{`작성일자 :  ${postDetails ? postDetails.created_at.split('T')[0] : '불러오는 중...'}`}</span>
+                      <span>{` (${postDetails ? postDetails.created_at.split('T')[1].split(':')[0] : '불러오는 중...'}`}</span>
+                      <span>{` : ${postDetails ? postDetails.created_at.split('T')[1].split(':')[1] : '불러오는 중...'} )`}</span>
+                    </div>
+                  </div>
                   <span></span>
                   <div className='modal__day__line'></div>
                   {!isEditMode ? (
@@ -481,7 +482,8 @@ function Board() {
                   <div>
                     <h3 className='modal__answer__main'>댓글</h3>
                     <div className='modal__answer__liner'></div>
-                      {answers.map((answer) => (
+                      {postDetails  && 
+                        postDetails.answers.map((answer) => (
                         <>
                         <span className='madal__userInfo'>{answer.id}</span>
                         <li key={answer.id} className='modal__answer__answer_main'>
@@ -509,11 +511,27 @@ function Board() {
                             <button className="modal__edit__button"onClick={editComment}>EDIT</button>
                           )}
                         </div>
-                        </div>
                       </div>
-                    <button className="modal__close-button" onClick={closeModal}>X</button>
                     </div>
+                    <button className="modal__close-button" onClick={closeModal}>X</button>
+                  </div>
               </>
+            )}
+              {isModalOpen && (
+              <div className='modal__answer__container_2'>
+                <div className='modal__answer__input__container_2'>
+                  <span className='modal__answer__input__main'>댓글 작성</span>
+                  <textarea
+                    placeholder="댓글을 입력하세요"
+                    value={comment}
+                    onChange={handleCommentChange}
+                    className='modal__answer__input'
+                  />
+                </div>
+                <div className='modal__plusAndChange_2'>
+                  <button className="modal__add__button" onClick={addAnswer}>ADD</button>
+                </div>
+              </div>
             )}
           </>
         )}

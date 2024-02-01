@@ -11,11 +11,19 @@ const Assignment = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const params = new URLSearchParams();
-  params.append("student_id", "20201761");
+  const [paarms, setParms] = useState({
+    student_id: 20201776,
+    weeks: 0,
+     
+  });
   const [assignment, setAssignments] = useState([]);
   const student_id = 20201761
 
   const address = "https://port-0-likelion-12th-backend-9zxht12blqj9n2fu.sel4.cloudtype.app";
+
+  const currentPath = window.location.pathname;
+  console.log(currentPath.split('/')[2]);
+  console.log(params);
 
   const assignmentdelte = async () => {
       try {
@@ -58,22 +66,18 @@ const Assignment = () => {
     <>
       <div>과제 제출페이지</div>
       <Link to={`/TaskEdit/${urlNumber}`}>과제 제출하기</Link>
-
       <div>
         <h2>Assignment Information</h2>
         <ol>
-  {assignment.map((outerItem, outerIndex) => (
-    <li key={outerIndex}>
-      <h3>{outerItem.assignment_title}</h3>
-      <p>file: {outerItem.file}</p>
-      <p>Submission Status: {outerItem.submission_time}</p>
-
-    </li>
-    
-  ))}
-</ol>
-<button onClick={() => assignmentdelte()}>과제 삭제하기</button>
-
+          {assignment.map((outerItem, outerIndex) => (
+            <li key={outerIndex}>
+              <h3>{outerItem.assignment_title}</h3>
+              <p>file: {outerItem.file}</p>
+              <p>Submission Status: {outerItem.submission_time}</p>
+            </li>
+          ))}
+        </ol>
+        <button onClick={() => assignmentdelte()}>과제 삭제하기</button>
       </div>
     </>
   );

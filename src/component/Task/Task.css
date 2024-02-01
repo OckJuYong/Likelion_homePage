@@ -1,6 +1,164 @@
-.task_main_container {
-    color: white;
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    -ms-overflow-style: none;
+  }
+  
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  
+.tum {
+    margin-top: 22vh;
+  }
+  
+.task__header__main__container {
     position: relative;
-    margin-top: 20vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0px 10vw 0px 4vw;
 }
 
+.Task_Lion_title {
+    color: #F29827;
+    text-align: center;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.Task__title {
+    color: #FFF;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-left: 1vw;
+}
+
+.task__create__button__y {
+    position: absolute;
+    background-color: #282828;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    color: #F29827;
+    border: 1px solid #F29827;
+    border-radius: 100%;
+}
+
+.task__header__line {
+    border-top: 1px solid #F29827;
+    margin: 4vh 3vw 2vh 3vw;
+  }
+
+
+  .week_slide {
+    display: flex !important;
+    position: relative !important;
+    align-items: center !important;
+    border-radius: 30px !important;
+    background-color: #282828 !important;
+    box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.50) !important;
+    margin: 2vh 10vw 1vh 10vw;
+    background-color: #333;
+    width: 80% !important;
+    height: 11vh !important;
+    border-radius: 10px;
+  }
+  
+  .week_slide{
+    color: white;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .week_slide a {
+    color: white;
+    text-decoration: none;
+    margin-left: 1vw;
+  }
+  
+  .week_slide button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .task__deadline__yo {
+    margin-left: 55vw;
+    color: #FFF;
+
+font-family: Inter;
+font-size: 15px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+  }
+  
+  .slider_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* 아래는 슬라이더에 대한 스타일 조정입니다. */
+  .slick-prev,
+  .slick-next {
+    font-size: 24px;
+    color: white;
+    background-color: #333;
+    border: none;
+    border-radius: 50%;
+  }
+  
+  .slick-prev {
+    left: 0;
+  }
+  
+  .slick-next {
+    right: 0;
+  }
+  
+  .slick-prev:hover,
+  .slick-next:hover {
+    background-color: #555;
+  }
+  
+  .slick-dots {
+    bottom: 10px;
+  }
+  
+  .slick-dots li button {
+    font-size: 12px;
+    color: white;
+    background-color: #333;
+    border: none;
+    border-radius: 50%;
+  }
+  
+  .slick-dots li.slick-active button {
+    background-color: #555;
+  }
+  
+
+  .task__del__button {
+    position: absolute;
+    margin-left: 2vw;
+    top: 10px;
+    border: 1px solid red !important;
+    border-radius: 100% !important;
+    background-color: #282828 !important;
+    color: red !important;
+  }
