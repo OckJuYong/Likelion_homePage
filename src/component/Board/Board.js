@@ -303,6 +303,10 @@ function Board() {
   };
 
   //---------------스와이퍼부분
+  const formatNoticeTime = (rawTime) => {
+    const options = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: false };
+    return new Date(rawTime).toLocaleDateString('ko-KR', options);
+  };
 
   
 
@@ -378,7 +382,7 @@ function Board() {
                         <div className='board__write__name'>
                           {userDivision == "admin" ? post.author.name : ''}
                           <div className='board__write__time'>
-                            {post.created_at.split('T')[0]}
+                            {formatNoticeTime(post.created_at)}
                           </div>
                         </div>
                         <div className='gimojji'>

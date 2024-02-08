@@ -194,7 +194,7 @@ function Board_Write() {
                 className='board__write__title'
               />
           </div>
-          <h1 className="Board_content"><span>Lion</span>게시판 내용</h1>
+          <h1 className="Board_write_content"><span>Lion</span>게시판 내용</h1>
           <textarea
           value={movieContent.content}
           onChange={(e) => handleContentChange(e, { getData: () => e.target.value })}

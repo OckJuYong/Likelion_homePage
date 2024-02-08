@@ -9,6 +9,7 @@ import fileImg from '../Introduction/image 3.png';
 
 import LogoHeader from '../Main/header/LogoHeader';
 import MenuHeader from '../Main/header/MenuHeader';
+import Assignment from './Assingment';
 
 
 const TaskEdit = () => {
@@ -17,18 +18,32 @@ const TaskEdit = () => {
   const { weeks } = useParams();
   const sliderRef = useRef(null);
 
-
   const [file, setFile] = useState(null);
   const currentUrl = window.location.href;
   let lastSegment = currentUrl.match(/[^/]+$/)[0];
   lastSegment = parseInt(lastSegment, 10);
+  let abc = lastSegment + 1
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const date = String(now.getDate()).padStart(2, '0');
+  const hour = String(now.getHours()).padStart(2, '0');
+  const minute = String(now.getMinutes()).padStart(2, '0');
+  const second = String(now.getSeconds()).padStart(2, '0');
+  
+  const currentDateTime = `${year}-${month}-${date}T${hour}:${minute}:${second}`;
+  
+  console.log(currentDateTime);
 
   const [newAssignmentData, setNewAssignmentData] = useState({
-    student_id: 20201776,
-    weeks: lastSegment, // URL에서 추출한 주차 정보
-    file: {}
+    student_id: 20201816,
+    weeks: abc, // URL에서 추출한 주차 정보
+    assignment_title: "name",
+    file: {},
+    submission_time: currentDateTime,
   });
   console.log(lastSegment);
+  console.log(newAssignmentData);
 
   //--------------------------------------------------------------
   const LoginAddress = 
@@ -79,7 +94,7 @@ const TaskEdit = () => {
   
     // Call fetchData function
     fetchData();
-  }, []); // Empty dependency array for the initial render only
+  }, []);
 
   useEffect(() => {
     const fetchDataWrapper = async () => {
@@ -99,35 +114,30 @@ const TaskEdit = () => {
   //-----------------------------------------------------------
 
   const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
+    // 파일을 선택했을 때 호출되는 함수
+    const selectedFile = e.target.files[0]; // 선택된 파일
+    setFile(selectedFile); // 파일 상태 업데이트
   };
-  
-
   const handleAssignmentSubmit = async () => {
     try {
-      const formData = new FormData();
-  
-      formData.append('file', file); // 파일 추가
+      const formData = new FormData(); // FormData 객체 생성
+      formData.append('file', file); // 선택된 파일을 FormData에 추가
       formData.append('student_id', newAssignmentData.student_id); // student_id 추가
       formData.append('weeks', newAssignmentData.weeks); // weeks 추가
+      formData.append('submission_time', currentDateTime); // submission_time 추가
   
-      // 서버에 과제 생성 요청 보내기
+      // 서버에 FormData를 전송하여 파일 업로드 요청 보내기
       const response = await axios.post(`${address}/assignment/`, formData);
       console.log('Assignment submitted successfully:', response.data);
       navigate('/Task'); // 제출 후 필요한 작업 수행
     } catch (error) {
       console.error('Error submitting assignment:', error);
       console.log(error.response);
-  
       // 오류 처리
     }
   };
-  const formData = new FormData();
-  
-  formData.append('file', file); // 파일 추가
-  formData.append('student_id', newAssignmentData.student_id); // student_id 추가
-  formData.append('weeks', newAssignmentData.weeks); // weeks 추가
-  console.log(formData);
+
+
 
   return (
     <div>

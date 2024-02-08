@@ -2,18 +2,15 @@ import React, { useState, useEffect } from "react";
 import cookie from "react-cookies";
 import axios from "axios";
 import Header from "../Main/header/header";
-import { useAuth } from "./AuthContext";
+import { useParams, useNavigate } from 'react-router-dom';
 import "./Login.css";
-import { useNavigate } from "react-router-dom";
 
 function Login() {
-  const navigate = useNavigate();
   const address = "http://192.168.0.4:8080/api/";
-  const LoginAddress =
-    // "https://port-0-djangoproject-umnqdut2blqqevwyb.sel4.cloudtype.app/login/";
-    "http://15.164.190.171/login/";
-  const { setLoginInfo } = useAuth();
+  const LoginAddress = "http://15.164.190.171/login/";
   const expires = new Date();
+
+  const navigate = useNavigate();
 
   const [userData, setUserData] = useState({
     username: "",
@@ -23,6 +20,8 @@ function Login() {
   const [isRequesting, setIsRequesting] = useState(false);
   const [accessToken, setAccessToken] = useState(null);
   const [refreshToken, setRefreshToken] = useState(null);
+
+
 
   const getAccessToken = async () => {
     try {
@@ -41,13 +40,17 @@ function Login() {
         }
       );
 
+      console.log("Get Access Token Response:", getAccessTokenResponse.data);
 
       // setAccessToken(getAccessTokenResponse.data.access);
 
+      console.log("Access Token:", getAccessTokenResponse.data.access);
       cookie.save("accessToken", getAccessTokenResponse.data.access, {
         path: "/",
         expires: new Date(getAccessTokenResponse.data.access),
       });
+      navigate('/');
+
     } catch (error) {
       console.error("Error checking access token:", error);
     }
@@ -76,6 +79,7 @@ function Login() {
           password: userData.password,
         }
       );
+      console.log("Server Response:", loginResponse.data);
 
       setAccessToken(loginResponse.data.access);
       setRefreshToken(loginResponse.data.refresh);
@@ -90,7 +94,7 @@ function Login() {
         expires: new Date(loginResponse.data.refresh),
       });
 
-      navigate('/');
+      console.log("Login Response:", loginResponse.data);
 
     } catch (error) {
       console.error("Error:", error);
@@ -119,20 +123,20 @@ function Login() {
      </div>
         <div className="login_state">
           {/* 폼 제출 시 FormEvent 함수 호출 */}
-          <h2 className="title">LOGIN</h2>
+          <h2 className="Login">LOGIN</h2>
           <form onSubmit={FormEvent}>
-            <label htmlFor="id">ID</label>
+            <label className="Id" htmlFor="id">ID</label>
             {/* 사용자 ID 입력 필드 */}
             <input
               type="text"
               id="id"
               name="id"
-              value={userData.student_id}
+              value={userData .student_id}
               onChange={(e) => changeId(e.target.value)}
               placeholder="Student number"
             />
 
-            <label htmlFor="pw">Password</label>
+            <label className="Pw" htmlFor="pw">Password</label>
             {/* 사용자 비밀번호 입력 필드 */}
             <input
               type="password"
@@ -142,11 +146,11 @@ function Login() {
               onChange={(e) => changePw(e.target.value)}
               placeholder="Password"
             />
-            <hr className="line"/>  
+            <hr className="Login-line"/>  
           
             {/* 로그인 버튼 */}
             <div className="login_Button">
-              <button type="submit">LOGIN</button>
+              <button type="submit" >LOGIN</button>
             </div>
           </form>
         </div>

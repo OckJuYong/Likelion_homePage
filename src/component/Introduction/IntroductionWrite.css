@@ -12,7 +12,7 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    margin-bottom: 3vh;
+    margin-bottom: 2vh;
   }
 
   .introduction_title_write {
@@ -23,6 +23,7 @@
     box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.50);
     margin-bottom: 3vh;
     color: white;
+    margin: 0px 0px 2vh 0px !important;
   }
 
   .introduction_content_write_name {

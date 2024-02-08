@@ -1,6 +1,6 @@
 // Introduction.jsx
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -8,21 +8,23 @@ import IntroductionEdit from './introductionEdit';
 import cookie from 'react-cookies';
 import './introduction.css';
 
-import 'swiper/swiper-bundle.css';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Navigation } from 'swiper/core';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
 
 import leftButton from '../Board/left.png';
 import rightButton from '../Board/right.png';
 
 import HeaderMenu from '../Main/header/MenuHeader';
 import HeaderLogo from '../Main/header/LogoHeader';
+import Slider from 'react-slick';
 
 
 
 function Introduction() {
   const address = "https://port-0-likelion-12th-backend-9zxht12blqj9n2fu.sel4.cloudtype.app/";
-  const accessAddress = "http://192.168.0.4:8080/api/";
+  const accessAddress = 
+  "http://15.164.190.171/login/";
 
   const [notices, setNotices] = useState([]);
   const [editingId, setEditingId] = useState(null);
@@ -35,71 +37,77 @@ function Introduction() {
   const [studentInfo, setStudentInfo] = useState(null);
   const student_id = "20201776";
 
+  const navigate = useNavigate();
+
   const setEditingIdInLocalStorage = (id) => {
     localStorage.setItem('editingId', id);
   };
+
   
+  const [userName, setUserName] = useState(null);
+  const [userDivision, setUserDivision] = useState(null);
+  const [student_Id, setStudent_Id] = useState(null);
+  
+  const LoginAddress = 
+  // "https://port-0-djangoproject-umnqdut2blqqevwyb.sel4.cloudtype.app/login/";
+  "http://15.164.190.171/login/";
+
   const [accessToken, setAccessToken] = useState(null);
   const [refreshToken, setRefreshToken] = useState(null);
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const savedAccessToken = cookie.load("accessToken");
         const savedRefreshToken = cookie.load("refreshToken");
-
-        setAccessToken(savedAccessToken);
         setRefreshToken(savedRefreshToken);
-
+        setAccessToken(savedAccessToken);
+  
+        console.log("Trying to get access token...");
+  
         const getAccessTokenResponse = await axios.post(
-          `${accessAddress}token/verify/`,
-          { token: savedAccessToken }
+          `${LoginAddress}`,
+          {
+            access: savedAccessToken,
+            refresh: savedRefreshToken,
+          }
         );
-        const studentId = getAccessTokenResponse.data.student_id;
-        setStudentInfo(studentId);
-        console.log('Server Response:', getAccessTokenResponse);
-        console.log('Student ID:', studentId);
+  
+        setUserName(getAccessTokenResponse.data.name);
+        setUserDivision(getAccessTokenResponse.data.division);
+        setStudent_Id(getAccessTokenResponse.data.username)
+        console.log(getAccessTokenResponse.data.username);
+        console.log(getAccessTokenResponse.data.division);
+        
+        
+        cookie.save("accessToken", getAccessTokenResponse.data.access, {
+          path: "/",
+          expires: new Date(getAccessTokenResponse.data.expires),
+        });
       } catch (error) {
-        try {
-          const refreshTokenResponse = await axios.post(
-            `${accessAddress}token/refresh/`,
-            { refresh: refreshToken }
-          );
-
-          cookie.save("accessToken", refreshTokenResponse.data.access, {
-            path: "/",
-          });
-          setAccessToken(refreshTokenResponse.data.access);
-
-          const refreshedStudentInfoResponse = await axios.post(
-            `${accessAddress}token/verify/`,
-            { token: refreshTokenResponse.data.access }
-          );
-
-          setStudentInfo(refreshedStudentInfoResponse.data.student_id);
-          console.log(
-            "Refreshed Student Info Response:",
-            refreshedStudentInfoResponse.data
-          );
-
-          const validateRefreshToken = await axios.post(
-            `${accessAddress}token/`,
-            {
-              refresh: refreshToken,
-            }
-          );
-          console.log(
-            "Validate Refresh Token Response:",
-            validateRefreshToken.data
-          );
-        } catch (refreshError) {
-          console.error('Error refreshing token:', refreshError);
-        }
+        console.error("Error checking access token:", error);
       }
     };
-
+  
+    // Call fetchData function
     fetchData();
-  }, [accessAddress]);
+  }, []); // Empty dependency array for the initial render only
+
+  useEffect(() => {
+    const fetchDataWrapper = async () => {
+      const savedAccessToken = await cookie.load('accessToken');
+      const savedRefreshToken = await cookie.load('refreshToken');
+
+      setAccessToken(savedAccessToken);
+      setRefreshToken(savedRefreshToken);
+
+
+      // Assuming fetchData is a function that you've defined elsewhere
+      // await fetchData(accessAddress, savedAccessToken, savedRefreshToken, setAccessToken, setRefreshToken);
+    };
+
+    fetchDataWrapper();
+  }, []);
 
   const fetchNotices = async () => {
     try {
@@ -140,6 +148,7 @@ function Introduction() {
           setContent(response.data.content);
           setFile(response.data.file || null);
           setEditingId(id);
+          console.log(response.data);
         } catch (error) {
           console.error('Error fetching notice:', error);
         }
@@ -168,30 +177,43 @@ function Introduction() {
     setIsModalOpen(false);
   };
 
-  const swiperSettings = {
-    spaceBetween: 50,
-    slidesPerView: 2,
-    onSlideChangeTransitionEnd: (swiper) => {
-      // 모든 Swiper 인스턴스에 같은 슬라이드 인덱스를 설정하여 동기화
-      topSwiper.slideTo(swiper.activeIndex);
-      bottomSwiper.slideTo(swiper.activeIndex);
-    },
-    onSwiper: (swiper) => console.log(swiper)
-  };
 
   // 상단 슬라이더와 하단 슬라이더에 대한 인스턴스 생성
   const [topSwiper, setTopSwiper] = useState(null);
   const [bottomSwiper, setBottomSwiper] = useState(null);
+  const sliderRef = useRef(null);
 
   const handleSliderPrev = () => {
-    topSwiper.slidePrev();
-    bottomSwiper.slidePrev();
+    if (sliderRef.current) {
+      sliderRef.current.slickPrev();
+    }
   };
 
   const handleSliderNext = () => {
-    topSwiper.slideNext();
-    bottomSwiper.slideNext();
+    if (sliderRef.current) {
+      sliderRef.current.slickNext();
+    }
   };
+
+  const introduction_slickSettings = {
+    dots: false,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    slidesPerRow: 4, 
+    arrows: false, 
+    infinite: false,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
+  console.log(notices);
 
   return (
     <div className='parent-div'>
@@ -200,69 +222,43 @@ function Introduction() {
       <HeaderLogo />
 
       <div className='introduction_main_container'>
+        <div className='intro_tum'></div>
         <div className='intro'>
           <div>
             <span className='Lion'>Lion </span>
-            <span>공지사항</span>
+            <span className='title'>공지사항</span>
           </div>
-          <Link to="/IntroductionWrite">+</Link>
+          <Link className='write_button' to="/IntroductionWrite">+</Link>
         </div>
         <div className='intro_line'></div>
         <div className="swiper-container">
-          <div className="swiper-wrapper">
-            {/* 상단 슬라이더 */}
-            <Swiper {...swiperSettings} onSwiper={setTopSwiper}>
-              {notices.map((notice, index) => (
-                index % 2 === 0 && (
-                  <SwiperSlide key={notice.id} className='main_introduction' onClick={() => openModal(notice)}>
-                    <div className='sub_introduction'>
-                      <span>{notice.notice_title}</span>
-                      <span>{formatNoticeTime(notice.notice_time)}</span>
-                    </div>
-                    <Link
-                      to={`/edit-notice/${notice.id}`}
-                      onClick={() => setEditingIdInLocalStorage(notice.id)}
-                    >
-                      수정하기
-                    </Link>
-                    <button onClick={() => handleDelete(notice.id)}>삭제하기</button>
-                  </SwiperSlide>
-                )
-              ))}
-            </Swiper>
-          </div>
-        </div>
-        
-        <div className="swiper-container">
-          <div className="swiper-wrapper">
-            {/* 하단 슬라이더 */}
-            <Swiper {...swiperSettings} onSwiper={setBottomSwiper}>
-              {notices.map((notice, index) => (
-                index % 2 === 1 && (
-                  <SwiperSlide key={notice.id} className='main_introduction' onClick={() => openModal(notice)}>
-                    <div className='sub_introduction'>
-                      <span>{notice.notice_title}</span>
-                      <span>{formatNoticeTime(notice.notice_time)}</span>
-                    </div>
-                    <Link
-                      to={`/edit-notice/${notice.id}`}
-                      onClick={() => setEditingIdInLocalStorage(notice.id)}
-                    >
-                      수정하기
-                    </Link>
-                    <button onClick={() => handleDelete(notice.id)}>삭제하기</button>
-                  </SwiperSlide>
-                )
-              ))}
-            </Swiper>
-          </div>
-        </div>
-
-
-        <div className="slider_button_container">
-              <button onClick={handleSliderPrev}><img className="slider__left__button" src={leftButton} /></button>
-              <button onClick={handleSliderNext}><img src={rightButton} /></button>
+        <div className="slider_button_container__2">
+              <button onClick={handleSliderPrev}><img className="slider__left__button__2" src={leftButton} alt="Left Button" /></button>
+              <button onClick={handleSliderNext}><img className="slider__right__button__2" src={rightButton} alt="Right Button" /></button>
             </div>
+          <div className="swiper-e">
+            {/* 상단 슬라이더 */}
+            <Slider {...introduction_slickSettings} ref={sliderRef}>
+              {notices.map((notice, index) => (
+                  <div key={notice.id} className='main_introduction' onClick={() => openModal(notice)}>
+                    <div className='sub_introduction'>
+                      <span className='introduction__id'>{notice.id}</span>
+                      <span className='introduction__title'>{notice.notice_title}</span>
+                      <span className='introduction__time'>{formatNoticeTime(notice.notice_time)}</span>
+                    </div>
+                    <Link className='edit__button'
+                      to={`/edit-notice/${notice.id}`}
+                      onClick={() => setEditingIdInLocalStorage(notice.id)}
+                    >
+                      ❌
+                    </Link >
+                    <button className='del__button' onClick={() => handleDelete(notice.id)}>🔨</button>
+                  </div>
+              ))}
+            </Slider>
+          </div>
+        </div>
+
 
 
         {isModalOpen && (

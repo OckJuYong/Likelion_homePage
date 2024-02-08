@@ -99,12 +99,11 @@
   .task__deadline__yo {
     margin-left: 55vw;
     color: #FFF;
-
-font-family: Inter;
-font-size: 15px;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
   }
   
   .slider_container {

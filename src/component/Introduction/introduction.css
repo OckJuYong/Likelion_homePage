@@ -1,16 +1,90 @@
 /* introduction.css */
 
-.introduction_main_container {
-    margin-top: 25vh;
+  .Lion{
+    color: #F29827;
+    text-align: center;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  .title{
+    color: #FFF;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-left: 1vw;
+  }
+
+  .del__button {
+    position: absolute;
+    margin-right: 10px; /* 예상한 값으로 조절 */
+    margin-top: 10px;  /* 예상한 값으로 조절 */
+  }
+  
+  .edit__button {
+    margin-right: 10px; /* 예상한 값으로 조절 */
+  }
+  
+  .intro {
+      color: #FFF;
+      font-family: Inter;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      margin-left: 2vw;
+      margin-bottom: 2vh;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+  }
+  
+  .intro a {
+      text-decoration: none;
+      width: 3vw;
+      height: 5vh;
+      color: #F29827;
+      border: 1px solid #F29827;
+      border-radius: 100%;
+      font-size: 2vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  
+  .intro_line {
+    margin-top: 9vh;
+    margin-left: 3vw;
+    margin-right: 3vw;
+  }
+  
+  .Lion {
+      color: #F29827;
+      text-align: center;
+      font-family: Inter;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+  }
+    
+  /* introduction.css */
+  
+  .introduction_main_container {
+    margin-top: 22vh;
     margin-left: 3vw;
     margin-right: 3vw;
     position: relative;
-}
-.button-container {
+  }
+  .button-container {
     margin: 0px ;
-}
-
-.intro {
+  }
+  
+  .intro {
     color: #FFF;
     font-family: Inter;
     font-size: 20px;
@@ -22,9 +96,9 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-}
-
-.intro a {
+  }
+  
+  .intro a {
     text-decoration: none;
     width: 3vw;
     height: 5vh;
@@ -35,14 +109,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.intro_line {
+  }
+  
+  .intro_line {
     border-top: 1px solid #F29827;
     margin: 3vh 0px 0px 0px;
-}
-
-.Lion {
+  }
+  
+  .Lion {
     color: #F29827;
     text-align: center;
     font-family: Inter;
@@ -50,39 +124,32 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-}
+  }
   
-.main_introduction {
-    width: 60px;
-    padding: 10px;
-    box-sizing: border-box;
-    border: 1px solid white;
-    margin-right: 100px;
-}
-
-.sub_introduction {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+  .main_introduction {
+    border-radius: 30px !important;
+    background-color: #282828 !important;
+    box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.50) !important;
     margin-bottom: 10px;
-    width: 100%;
-    padding: 0 10px;
-}
-
-.sub_introduction span {
-    margin-right: 10px;
-}
-
-.slider_button_container {
-    /* 버튼 위치 조정을 위한 스타일 */
-    position: absolute;
-    bottom: 10px; /* 원하는 위치로 조정하세요 */
-    left: 50%;
-    transform: translateX(-50%);
-}
+    width: 80vw !important;
+    height: 75px;
+    margin-left: 5.8vw; /* 왼쪽 여백 추가 */
+    margin-right: 2vw; /* 오른쪽 여백 추가 */
+  }
   
-.slider_button_container button {
+  
+  .slider_button_container__2 {
+    /* 버튼 위치 조정을 위한 스타일 */
+    position: relative;
+    left: 45%;
+  }
+
+  .slider__left__button__2 {
+    background-color: #282828;
+    color: #282828;
+  }
+  
+  .slider_button_container button {
     /* 버튼 스타일 */
     margin: 0 5px;
     padding: 10px 15px;
@@ -91,31 +158,240 @@
     color: #fff;
     border: none;
     cursor: pointer;
-}
-
-.swiper-slide {
+  }
+  
+  .swiper-slide {
     margin-right: 20px; /* 각 슬라이드 사이의 우측 여백 */
     border-radius: 30px; /* 슬라이드의 모서리를 둥글게 만듭니다. */
     background: #282828; /* 배경색 설정 */
     box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.50); /* 그림자 효과 추가 */
-}
-
-.swiper-container {
+  }
+  
+  .swiper-container {
     margin-top: 20px; /* 상단 여백 */
     margin-bottom: 20px; /* 하단 여백 */
-}
+  }
   
-.swiper-slide {
+  .swiper-slide {
     margin-right: 20px; /* 각 슬라이드 사이의 우측 여백 */
-}
+  }
   
   /* 마지막 슬라이드에는 오른쪽 여백을 추가하지 않음 */
-.swiper-slide:last-child {
+  .swiper-slide:last-child {
     margin-right: 0;
-}
-
-.sub_introduction span,
-.sub_introduction a,
-.sub_introduction button {
+  }
+  
+  .sub_introduction span,
+  .sub_introduction a,
+  .sub_introduction button {
     color: #fff;
-}
+  }
+  .slick-prev,
+  .slick-next {
+  font-size: 24px;
+  color: white;
+  background-color: #333;
+  border: none;
+  border-radius: 50%;
+  }
+  
+  .slick-prev {
+  left: 0;
+  }
+  
+  .slick-next {
+  right: 0;
+  }
+  
+  .slick-prev:hover,
+  .slick-next:hover {
+  background-color: #555;
+  }
+  
+  .slick-dots {
+  bottom: 10px;
+  }
+  
+  .slick-dots li button {
+  font-size: 12px;
+  color: white;
+  background-color: #333;
+  border: none;
+  border-radius: 50%;
+  }
+  
+  .slick-dots li.slick-active button {
+  background-color: #555;
+  }
+  
+  .introduction__id{
+  margin-right: 1vw;
+  }
+  .del__button{
+  position: absolute;
+  margin-right: 100%;
+  margin-top: 100px;
+  }
+  .edit__button{
+  position: absolute;
+  margin-right: 120%;
+  }
+  
+  
+  .sub_introduction {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      width: 100%;
+      padding: 0 10px;
+  }
+  
+  .sub_introduction span {
+      display: flex !important;
+      flex-direction: row !important;
+      justify-content: space-between !important;
+      align-items: center;
+      height: 11vh;
+      color: white;
+  }
+  
+  .slider_button_container__2 {
+      /* 버튼 위치 조정을 위한 스타일 */
+      position: absolute;
+      top: 70vh;
+      display: flex;
+      left: 20vw;
+      
+  }
+  .slider_button_container__2 button {
+    background-color: #282828 !important;
+    margin: 0px 15vw 1vh 10vw !important;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    
+  }
+
+  .slider__left__button__2 {
+    width: 35px;
+  }
+  .slider__right__button__2 {
+    width: 35px;
+  }
+
+  .swiper-slide {
+      margin-right: 20px; /* 각 슬라이드 사이의 우측 여백 */
+      border-radius: 30px; /* 슬라이드의 모서리를 둥글게 만듭니다. */
+      background: #282828; /* 배경색 설정 */
+      box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.50); /* 그림자 효과 추가 */
+  }
+  
+  .swiper-container {
+      margin-top: 20px; /* 상단 여백 */
+      margin-bottom: 20px; /* 하단 여백 */
+  }
+    
+  .swiper-slide {
+      margin-right: 20px; /* 각 슬라이드 사이의 우측 여백 */
+  }
+    
+    /* 마지막 슬라이드에는 오른쪽 여백을 추가하지 않음 */
+  .swiper-slide:last-child {
+      margin-right: 0;
+  }
+
+
+  
+  .sub_introduction span,
+  .sub_introduction a,
+  .sub_introduction button {
+      color: #fff;
+  }
+  .slick-prev,
+  .slick-next {
+    font-size: 24px;
+    color: white;
+    background-color: #333;
+    border: none;
+    border-radius: 50%;
+  }
+  
+  .slick-prev {
+    left: 0;
+  }
+  
+  .slick-next {
+    right: 0;
+  }
+  
+  .slick-prev:hover,
+  .slick-next:hover {
+    background-color: #555;
+  }
+  
+  .slick-dots {
+    bottom: 10px;
+  }
+  
+  .slick-dots li button {
+    font-size: 12px;
+    color: white;
+    background-color: #333;
+    border: none;
+    border-radius: 50%;
+  }
+  
+  .slick-dots li.slick-active button {
+    background-color: #555;
+  }
+  
+  .introduction__id{
+    margin-right: 1vw;
+  }
+  .edit__button{
+    border: 1px solid red;
+    border-radius: 50px;
+    background-color: #282828;
+    padding: 5px;
+    color: red;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 1vh;
+    margin-left: 85%;
+    margin-top:-5%;
+    position: absolute;
+  }
+  .del__button{
+    border: 1px solid green;
+    background-color: #282828;
+    padding: 5px;
+    border-radius: 30px;
+    margin-left: 88%;
+    margin-top:-5%;
+  }
+
+  .introduction__id {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  .introduction__title {
+    margin-right: 55vw;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  .introduction__time {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }

@@ -119,10 +119,16 @@
 }
 
 .link_header a {
-  margin-top: 2vh;
+  /* margin-top: 2vh; */
+  margin: 0vh 2vw 5vh 1vw;
   padding: 4vh;
 }
 
 .bugger_menu_bar {
   width: 20px;
+}
+
+.front_react_img {
+  margin-top: 7vh;
+  width: 10vh;
 }

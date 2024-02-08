@@ -5,10 +5,11 @@
    margin: 20px;
 }
 
+
 .login_title{
         background-image: url(login.png);
         background-repeat: no-repeat;
-        width: 62vw;
+        width: 60vw;
         height: 60vh;
         background-size: contain;
         display: flex;
@@ -18,6 +19,10 @@
         flex-shrink: 0;
         text-align: center;
         margin-top: 15vh;
+        /* margin-right: 2%; */
+        margin-right: -5%;
+     
+        
     }
     
     .login_title h2,
@@ -35,21 +40,26 @@
 }
 .login_title h3{
     font-size: 40px;
-    color: white;    
+    color: white;
+    
+
 }
 .login_title h4{
     color: #ffda92;
     font-size: 13px;
+    
 }
 .login_title h4 span {
     color: white; 
 }
+
+
     .login_state {
         background-color: #282828;
         border: 1px solid #282828;
-        width: 500px;
+        width: 600px;
         height: 500px;
-        border-radius: 30px;
+        border-radius: 25px;
         box-shadow: 10px 10px 100px 50px rgba(112, 102, 89, 0.20);
         color: #ffda92;
         display: flex;
@@ -57,24 +67,28 @@
         justify-content: center;
         margin-top: 8vh;
         flex-direction: column;
-        margin-right: 4%;
+        margin-right: 10%;
+        
+        /* margin-right: 8%; */
 
     }
     input{
-        width: 290px;
-        height: 35px;
+        width: 293px;
+        height: 55px;
         flex-shrink: 0;
-        border-radius: 30px;
+        border-radius: 18px;
         background-color: #ffda92;
         box-shadow: 5px 5px 30px 0px rgba(170,170,170,0.25);
         display: flex;
         justify-self: center;
+        margin-left: 29px;
     
 
     } 
     input::placeholder{
         color: white;
         font-size: 14px;
+
     }
 
     .login_Button button{
@@ -89,9 +103,10 @@
         font-style: normal;
         font-weight: bold;
         line-height: normal;
+        margin-left: 20px;
     }
-    .line{
-        width:270px;
+    .Login-line{
+        width: 350px;
         margin-bottom: 70px;
         height: 1px;
         background-color: #ffda92;
@@ -123,4 +138,15 @@
         margin-left: 5px; 
         margin-right: 5px;
     
+    
+    }
+    .Id,.Pw{
+        color: #ffda92;
+        margin-left: 10%;
+        font-weight: 700;
+        font-style: normal;
+        line-height: normal;
+    }
+    .Login{
+        font-size: 26px;
     }

@@ -5,6 +5,7 @@ import './MenuHeader.css';
 import cookie from 'react-cookies';
 import axios from 'axios';
 import dj from './image 2.png';
+import react from './image 1.png';
 import menubar from './menubar.png';
 
 import { useNavigate } from 'react-router-dom';
@@ -20,10 +21,16 @@ const MenuHeader = () => {
   };
 
   const accessAddress = 'http://192.168.0.4:8080/api/';
-  const LoginAddress = "https://port-0-djangoproject-umnqdut2blqqevwyb.sel4.cloudtype.app/login/";
+  const LoginAddress = 
+  // "https://port-0-djangoproject-umnqdut2blqqevwyb.sel4.cloudtype.app/login/";
+  "http://15.164.190.171/login/";
 
   const [accessToken, setAccessToken] = useState(null);
   const [refreshToken, setRefreshToken] = useState(null);
+
+  const [userName, setUserName] = useState(null);
+  const [userDivision, setUserDivision] = useState(null);
+  const [student_Id, setStudent_Id] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,6 +49,12 @@ const MenuHeader = () => {
             refresh: savedRefreshToken,
           }
         );
+        setUserName(getAccessTokenResponse.data.name);
+        setUserDivision(getAccessTokenResponse.data.division);
+        setStudent_Id(getAccessTokenResponse.data.username)
+        console.log(getAccessTokenResponse.data.name);
+        console.log(getAccessTokenResponse.data.username);
+        console.log(getAccessTokenResponse.data.division);
 
 
         cookie.save("accessToken", getAccessTokenResponse.data.access, {
@@ -56,6 +69,8 @@ const MenuHeader = () => {
     // Call fetchData function
     fetchData();
   }, []); // Empty dependency array for the initial render only
+
+  
 
   useEffect(() => {
     const fetchDataWrapper = async () => {
@@ -85,10 +100,12 @@ const MenuHeader = () => {
           <span className='close' onClick={() => onSetSidebarOpen(false)}>X</span>
           <div className='notice_container'>
             <div className='djImg'>
-              <img src={dj} alt='DJ Image' />
+              {userDivision == "front" || userDivision == "fromt admin" ?<img className="front_react_img"src={react} alt = 'React Image'/> : <img src={dj} alt='DJ Image' />}
+              
+              
             </div>
             <div className='userInfo'>
-              <span>주용's </span>
+              <span>{userName}'s </span>
               <span className='yellow'>Lion</span> 
               <span>님 반갑습니다</span>
             </div>

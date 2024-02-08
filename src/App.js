@@ -3,7 +3,6 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Main from './component/Main/main/main';
-
 import Board from './component/Board/Board';  
 import BoardWrite from './component/Board/Board_write';
 import Board_Edit from './component/Board/Board_Edit';
@@ -14,7 +13,8 @@ import IntroductionWrite from './component/Introduction/introduction_write';
 import IntroductionEdit from './component/Introduction/introductionEdit';
 
 import Login from './component/Login/Login';
-import { AuthProvider } from './component/Login/AuthContext';
+import LikeLion from './component/Notice/LikeLion'; 
+import Manager from './component/Notice/Manager'; 
 
 import Info from './component/info/info';
 import Notice from './component/Notice/Notice';
@@ -29,7 +29,6 @@ import Test from './component/Board/Board_test';
 
 function App() {
     return (
-        <AuthProvider>
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Main />} />
@@ -46,17 +45,17 @@ function App() {
                     <Route path="/login" element={<Login />} />
                     <Route path="/info" element={<Info />} />
                     <Route path="/Notice" element={<Notice />} />
+                    <Route path="/LikeLion" element={<LikeLion />} />
+                    <Route path="/Manager" element={<Manager />} />
 
                     <Route path="/Task" element={<Task />} />
                     <Route path="/TaskWrite" element={<TaskWrite />} />
                     <Route path='/TaskEdit/:id' element={<TaskEdit />} />
                     <Route path='/Assignment/:id' element={<Assignment />} />
 
-
                     <Route path='/test' element={<Test />} />
                 </Routes>
             </BrowserRouter>
-        </AuthProvider>
     );
 }
 

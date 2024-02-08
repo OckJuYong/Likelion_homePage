@@ -1,33 +1,260 @@
-.body_info {
-    margin-top: 30vh;
-    position: relative;
-  }
-  
-  .main_title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: skyblue;
-  }
-  
-  .main_info {
-    display: flex;
-    justify-content: space-around;
-    color: white;
-  }
-  
-  .front,
-  .back,
-  .information {
-    padding: 60px;
-    border: 1px solid white;
-  }
-  
-  .information {
-    background-color: rgba(0, 0, 0, 0.7); /* 투명한 배경으로 조절 */
-  }
+.main_container {
+  display: flex;
+  justify-content: space-around;
+  height: 640px;
+}
 
-  .github {
-    text-decoration: none;
-    color: blue
-  }
+
+
+.line {
+  width: 1220px;
+  height: 1px;
+  background-color: #F29827;
+}
+.common{
+ 
+  display: flex;
+  justify-content: center;
+  margin-left: 10%;
+  color: #F29827;
+  text-align: center;
+  font-family: Inter;
+  font-size: 30px;
+  font-style: normal;
+  font-weight:700 ;
+  line-height: normal;
+}
+.Back-End{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-left: 26%;
+  margin-top:-20px;
+  color: #F29827;
+  text-align: center;
+  font-family: Inter;
+  font-size: 30px;
+  font-style: normal;
+  font-weight:700 ;
+  line-height: normal;
+  
+}
+.Front-End{
+  display: flex;
+  justify-content: center;
+  margin-left: 26%;
+  color: #F29827;
+  text-align: center;
+  font-family: Inter;
+  font-size: 30px;
+  font-style: normal;
+  font-weight:700 ;
+  line-height: normal;
+}
+
+.common-box {
+ 
+  display: flex;
+  width: 400px;
+  height: 200px;
+  flex-shrink: 0;
+  margin-left: 3vw;
+  box-shadow: 4px 4px 10px rgba(0, 0, 10, 0.5);
+  border-radius: 5%;
+  transform: translateZ(20px);
+  border: 10px solid #282828;
+  background-image: url(notice.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 40%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.Back-End-box {
+  
+  display: flex;
+  width: 400px;
+  height: 200px;
+  flex-shrink: 0;
+  margin-left: 10vw;
+  box-shadow: 4px 4px 10px rgba(0, 0, 10, 0.5);
+  border-radius: 5%;  
+  background-image: url(pyton.png),url(Django.png),url(DRF.png);
+  background-position: 17% center, 53% center,  right center;
+  background-size: 22%,16%,44%;
+  background-repeat: no-repeat,no-repeat,no-repeat;
+  border: 10px solid #282828;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+} 
+
+
+.Front-End-box{
+  display: flex;
+  width: 400px;
+  height: 200px;
+  flex-shrink: 0;
+  margin-left: 10vw;
+  box-shadow: 4px 4px 10px rgba(0, 0, 10, 0.5);
+  border-radius: 5%;
+  border: 10px solid #282828;
+  background-image: url(js심화.png),url(react.png),url(type.png);
+  background-position: 22% center, 53% center,  83% center;
+  background-size: 13%,13%,13%;
+  background-repeat: no-repeat,no-repeat,no-repeat;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.Front-End-box h4{
+  display: flex;
+  flex-direction: column;
+  color: #F29827;
+  text-align: center;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-top: auto;
+  margin-right: 14px;
+
+}
+.Back-End-box.DRF{
+  margin-right : -8%;
+}
+
+.common-box h4 {
+  display: flex;
+  flex-direction: column;
+  color: #F29827;
+  text-align: center;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-top: auto;
+  margin-right: 14px;
+}
+.Back-End-box h4{
+  display: flex;
+  flex-direction: column;
+  color: #F29827;
+  text-align: center;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-top: auto;
+  margin-right: 14px;
+  margin-bottom: 10%;
+}
+.Back-End-box h4.Python{
+  margin-bottom: 8%;
+  margin-left: 2%;
+  margin-right: 10%;
+
+}
+.Back-End-box h4.Django{
+  margin-bottom: 8%;
+  margin-left: 2%;
+  margin-right: 8%;
+}
+.Back-End-box h4.DRF{
+  margin-bottom: 8%;
+  margin-left: 4%;
+}
+.CSS{
+  margin-left: 10%;
+}
+.Front-End-box h4.js심화{
+  margin-left: 12%;
+}
+.Front-End-box h4.react{
+
+  margin-left: 9%;
+}
+.Front-End-box h4.type{
+  margin-left: 6%;
+}
+
+
+.line__2 {
+  position: absolute;
+  width: 100px;
+  height: 1.5px;
+  margin: -29px 0px 0px 18px;
+  background-color: #F29827;
+  
+}
+
+.line__2_1 {
+  position: absolute;
+  width: 1.5px;
+  height: 135px;
+  margin: -29px 0px 0px 18px;
+  background-color:#F29827;
+
+}
+
+.line__2_2 {
+  position: absolute;
+  width: 90px;
+  height: 1.5px;
+  margin: 105px 20px 0px -71px;
+  background-color: #F29827;
+
+}
+.v::before {
+  content: '>';
+  position: absolute;
+  font-size: 24px;
+  margin: -47px 0px 0px 108px;
+  color: #F29827; 
+  
+}
+.line__3{
+  position: absolute;
+  width: 90px;
+  height: 1.5px;
+  margin: 116px 20px 0px -71px;
+  background-color: #F29827;
+ 
+}
+.line__3_1{
+  position: absolute;
+  width: 1.5px;
+  height: 135px;
+  margin: 116px 0px 0px 18px;
+  background-color: #F29827;
+
+}
+.line__3_2{
+  position: absolute;
+  width: 100px;
+  height: 1.5px;
+  margin: 250px 0px 0px 18px;
+  background-color: #F29827;
+  
+}
+.v1::before {
+  content: '>';
+  position: absolute;
+  font-size: 24px;
+  margin: 231.5px 0px 0px 108px;
+  color: #F29827; 
+  
+}
+
+
+.notice__line__contaner {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  top: 75vh;
+}

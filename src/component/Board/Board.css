@@ -189,6 +189,8 @@ body.modal-open {
   margin-left: 1vw;
 }
 
+
+
 .Board_buttons button {
   border-radius: 30px;
   background: #282828;
@@ -233,6 +235,7 @@ body.modal-open {
   align-items: center;
   height: 11vh;
   color: white;
+  overflow: hidden !important;
 }
 
 .board_swiper_left {
@@ -249,10 +252,31 @@ body.modal-open {
 
 .board_swiper_left_id {
   margin-right: 1vw;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.board_swiper_left_title {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-left: 3vw;
+}
+.board__write__time {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  position: relative;
+  left: -10vw;
 }
 
 .board_swiper_right_id {
   margin-right: 1vw;
+  
 }
 
 .modal__close-button {
@@ -329,7 +353,7 @@ body.modal-open {
 
 
 .slider_button_container {
-  width: 60%;
+  position: absolute;
   display: flex;
   justify-content: space-around;
 }
@@ -348,7 +372,9 @@ body.modal-open {
 }
 
 .slider_button_container {
-  position: relative; /* 해당 요소에 position: relative; 추가 */
+  position: absolute;
+  top: 85vh;
+  margin-left: 35vw;
 }
 
 .slider_button_container button {

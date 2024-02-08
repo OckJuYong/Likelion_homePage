@@ -90,7 +90,7 @@ function IntroductionWrite() {
     <LogoHeader />
     <div className="introduction-write-container">
       {/* <Header /> */}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='introduction__write__container'>
         <label className='introduction_title_write_name'>공지사항 제목</label>
         <input className="introduction_title_write" type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
 

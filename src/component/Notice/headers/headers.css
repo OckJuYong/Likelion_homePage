@@ -1,0 +1,56 @@
+.notice-title {
+    display: flex;
+    width: 183px;
+    height: 50px;
+    flex-direction: row;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #fff;
+    text-align: center;
+    font-family: inter;
+    font-size: 21px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-top: 15vw;
+    margin-left: 14vw;
+  }
+  .notice-title a{
+    text-decoration: none;
+    color: inherit; 
+    margin-right: 30px;
+    margin-top: -26px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+
+  }
+ 
+
+  
+.notice-title a.active {
+  animation: moveup 0.3s ease-out forwards;
+  position: relative;
+  top: -30px; 
+  text-shadow: 4px 4px 10px rgba(242, 152, 39, 0.50);
+ 
+}
+@keyframes moveup {
+  0% {
+    transform: translateY(0px);
+  }
+  10%{
+    transform: translateY(-1px);
+  }
+  20% {
+    transform: translateY(-6px);
+  }
+  30%{
+    transform: translateY(-9px);
+  }
+  40% {
+    transform: translateY(-12px);
+  }
+ 
+  
+}

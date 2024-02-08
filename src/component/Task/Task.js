@@ -81,6 +81,7 @@ const Task = () => {
         console.log(getAccessTokenResponse.data.name);
         console.log(getAccessTokenResponse.data.username);
         console.log(getAccessTokenResponse.data.division);
+
         
         
         cookie.save("accessToken", getAccessTokenResponse.data.access, {
@@ -170,8 +171,8 @@ const Task = () => {
         
         setWeekCount(Math.ceil(response.data.length / userCount)); // 올림으로 변경
   
-        const loggedInUserRole = 'admin';
-        setIsAdmin(loggedInUserRole === 'admin');
+        const loggedInUserRole = 'front admin';
+        setIsAdmin(loggedInUserRole === 'front admin');
         
       } catch (error) {
         console.error('Error fetching week list:', error);
@@ -223,9 +224,9 @@ const Task = () => {
             <span className="Task__title">{`${userName}'s 과제`}</span>
           </div>
           <div>
-            {isAdmin && (
+            {/* {userDivision == "front admin" && ( */}
                 <button onClick={TaskWriteButton} className='task__create__button__y'>+</button>
-            )}
+            {/* )} */}
           </div>
         </div>
         <div className='task__header__line'></div>

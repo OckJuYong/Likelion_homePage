@@ -1,0 +1,271 @@
+
+  
+  .line {
+    width: 1220px;
+    height: 1px;
+    background-color: #F29827;
+  }
+    .Frontend_Manager{
+        margin-left: -45%;
+    position: absolute;
+    display: flex;
+    width: 288px;
+    height: 91px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #FFF;
+    text-align: center;
+    text-shadow: 4px 4px 10px rgba(242, 152, 39, 0.50);
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-top: 3%;
+    
+    }
+    .Frontend_box{
+        width: 600px;
+    height: 3000px;
+    flex-shrink: 0;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.50);
+   margin-top: 12%;
+   margin-left: 3%;
+   background: url(front1.png),url(front2.png);
+   background-size: 30%,30%;
+   background-repeat: no-repeat,no-repeat;
+   background-position: center 4%,center 30%;
+   
+
+    }
+    .Frontend_Reader{
+color: #83C586;
+text-align: center;
+font-family: Inter;
+font-size: 20px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+position: absolute;
+margin-top: 24%;
+margin-left: 16%;
+    }
+    
+.ex1{
+    color: #FFF;
+font-family: Inter;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+position:absolute;
+margin-top:26%;
+justify-content: center;
+margin-left: 20%;
+align-content: center;
+
+}
+.ex3{
+    color: #FFF;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    position:absolute;
+    margin-top:26%;
+    justify-content: center;
+    margin-left: 20%;
+    align-content: center;
+    
+    
+}
+
+
+
+
+
+.a{
+    margin-left: -6%;
+    margin-top: -2px;
+
+}   
+.b{
+    margin-left: -6%;
+    margin-top: -2%;
+   
+}
+.c{
+    
+    margin-left: -40%;
+    margin-top: -20px;
+
+}
+.d{
+    margin-top: 9%;
+    margin-left: -40%;
+}
+.e{
+    margin-left: -8%;
+    margin-top: -2px;
+
+}
+.f{
+    margin-left: -6%;
+    margin-top: -2%;
+
+}
+.g{
+    margin-left: -50%;
+    margin-top: -20px;
+
+    
+}
+.h{
+    margin-top: 9%;
+    margin-left: -50%;
+}
+.i{
+    margin-left: -5%;
+
+}
+.j{
+    margin-top:-0.5%
+}
+.l{
+    margin-top:-3%;
+}
+.k{
+    margin-top:9%
+}
+.m{
+    margin-top: 9%;
+    margin-left: 4%;
+}
+.n{
+    margin-left: -13%
+}
+.front_manager_box{
+    position: absolute;
+    margin-top: 80%;
+    margin-left: 5%;
+    color: #FFF;
+text-align: center;
+font-family: Inter;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+
+
+}
+.Backend_Manager_box1{
+    position: absolute;
+    margin-top: 80%;
+    margin-left: 5%;
+    color: #FFF;
+text-align: center;
+font-family: Inter;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+justify-content: center;
+
+}
+.Backend_Manager_box2{
+    position: absolute;
+    margin-top: 144%;
+    margin-left: 5%;
+    color: #FFF;
+text-align: center;
+font-family: Inter;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+justify-content: center;
+
+}
+.manager{
+    font-size: 20px;
+}
+.move{
+    position: absolute;
+    margin-top: -1%;
+}
+.move1{
+    position: absolute;
+    margin-top: -1%;
+}
+.move2{
+    position: absolute;
+    margin-top: -1%;
+    margin-left: 4%;
+}
+
+.container{
+    display: flex;
+    justify-content: space-around;
+
+}
+.Backend_Manager{
+    margin-left: 53%;
+    position: absolute;
+    display: flex;
+    width: 288px;
+    height: 91px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #FFF;
+    text-align: center;
+    text-shadow: 4px 4px 10px rgba(242, 152, 39, 0.50);
+    font-family: Inter;
+    font-size: 23.4px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-top: 3%;
+
+}
+.Backmanager1{
+    font-size: 20px;
+    margin-left: -5%;
+
+}
+.Backmanager2{
+    font-size: 20px;
+    margin-left: -13%;
+
+}
+.Backend_box{
+    width: 600px;
+    height: 3000px;
+    flex-shrink: 0;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.50);
+   margin-top: 12%;
+   margin-left: 3%;
+   background: url(back1.png),url(back2.png),url(back3.png);
+   background-size: 30%,30%,30%;
+   background-repeat: no-repeat,no-repeat,no-repeat;
+   background-position: center 4%,center 30%,center 60%;
+   
+
+}
+.Backend_Reader{
+    color: #83C586;
+text-align: center;
+font-family: Inter;
+font-size: 20px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+position: absolute;
+margin-top: 24%;
+margin-left: 17%;
+
+}
