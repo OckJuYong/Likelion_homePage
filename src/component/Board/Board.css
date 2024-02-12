@@ -44,13 +44,12 @@ body.modal-open {
 }
 
 .modal__creat__time {
-  position: absolute;
-  margin-top: 14vh;
+  margin-top: 0vh;
 }
 
 .modal__day__line {
   border-top: 1px solid #F29827;
-  margin-top: 5vh;
+  margin-top: 2vh;
   margin-bottom: 2vh;
 }
 
@@ -114,10 +113,12 @@ body.modal-open {
   background: rgba(0, 0, 0, 0.3);
 }
 
-.modal__answer__container {
+.modal__answer__container_2 {
   display: flex;
   flex-direction: row;
-  margin-left: 1vw;
+  left: -13vw;
+  z-index: 3;
+  margin-top: 10vh;
   
 }
 
@@ -448,4 +449,9 @@ body.modal-open {
 .modal__header__title {
   display: flex;
   flex-direction: column;
+}
+
+.board__modal__main__container {
+  background-color: #282828 !important;
+  color: #000;
 }

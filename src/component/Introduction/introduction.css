@@ -45,21 +45,20 @@
   
   .intro a {
       text-decoration: none;
-      width: 3vw;
-      height: 5vh;
       color: #F29827;
       border: 1px solid #F29827;
       border-radius: 100%;
-      font-size: 2vw;
       display: flex;
       justify-content: center;
       align-items: center;
+      padding: 20px;
+      margin-left: 85vw;
   }
   
   .intro_line {
     margin-top: 9vh;
-    margin-left: 3vw;
-    margin-right: 3vw;
+    margin-left: 5vw;
+    margin-right: 5vw;
   }
   
   .Lion {
@@ -83,6 +82,18 @@
   .button-container {
     margin: 0px ;
   }
+
+  .introduction__write__button {
+    position: absolute;
+    margin-left: 88vw; /* 우측 여백이 7vw이므로 전체 화면 너비(100vw)에서 7vw만큼 뺀 값 */
+    background-color: #282828;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    color: #F29827;
+    border: 1px solid #F29827;
+    border-radius: 100%;
+  }
   
   .intro {
     color: #FFF;
@@ -97,19 +108,7 @@
     flex-direction: row;
     justify-content: space-between;
   }
-  
-  .intro a {
-    text-decoration: none;
-    width: 3vw;
-    height: 5vh;
-    color: #F29827;
-    border: 1px solid #F29827;
-    border-radius: 100%;
-    font-size: 2vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+
   
   .intro_line {
     border-top: 1px solid #F29827;
@@ -260,7 +259,7 @@
   .slider_button_container__2 {
       /* 버튼 위치 조정을 위한 스타일 */
       position: absolute;
-      top: 70vh;
+      top: 65vh;
       display: flex;
       left: 20vw;
       
@@ -275,10 +274,10 @@
   }
 
   .slider__left__button__2 {
-    width: 35px;
+    width: 30px;
   }
   .slider__right__button__2 {
-    width: 35px;
+    width: 30px;
   }
 
   .swiper-slide {
@@ -382,7 +381,7 @@
   }
 
   .introduction__title {
-    margin-right: 55vw;
+    margin-right: 30vw;
     font-family: Inter;
     font-style: normal;
     font-weight: 700;
@@ -395,3 +394,75 @@
     font-weight: 700;
     line-height: normal;
   }
+
+  .introduction__side__button {
+    position: absolute;
+  }
+
+  .main_introduction {
+    display: flex;
+    justify-content: space-between;
+}
+
+.gimojji {
+    display: flex;
+    align-items: center;
+    margin-top: -6.7vh !important;
+}
+.introduction__side__button {
+  display: flex;
+  align-items: center;
+}
+
+.board__admin__del__button {
+  text-decoration: none;
+}
+
+.introduction__modal__title {
+  font-size: 3vw;
+  margin: 1vh 0px 3vh 0px;
+  display: flex;
+  justify-content: center;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.introduction__modal__time {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.introduction__modal__header__line {
+  margin-top: 3vh;
+  border-top: 1px solid #F29827;
+}
+
+.introduction__modal__img {
+  display: flex;
+  justify-content: center;
+  margin: 1vh 0px 1vh 0px;
+}
+
+.introduction__modal__content {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.introduction__modal__close__button {
+  border: 1px solid green;
+  background-color: green;
+  color: white;
+  padding: 5px;
+  border-radius: 30px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-left: 45%;
+}

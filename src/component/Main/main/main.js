@@ -117,7 +117,9 @@ function Main() {
 
         
       </div>
-      <Header className="Header"/>
+      <div className="main_header_container">
+        <Header className="Header"/>
+      </div>
     </div>
   );
 }

@@ -73,7 +73,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 40vw; /* 너비는 그대로 유지 */
-    height: 40vh; /* 높이를 25vh로 수정 */
+    height: 32vh; /* 높이를 25vh로 수정 */
     flex-shrink: 0;
     border-radius: 30px;
     background: #282828;
@@ -82,7 +82,7 @@ body {
     color: white;
     top: 5vh; /* 위치를 20vh로 조절 */
     padding: 8vh; /* 내부 여백은 그대로 유지 */
-    margin-top: -15vh;
+    margin-top: 25vh;
   }
 
   .Lion__info__container {
@@ -154,11 +154,11 @@ body {
     border-radius: 20px;
     background: #F29827;
     margin-left: 11vw;
-    margin-top: 5vh;
+    margin-top: 10vh;
     color: white;
     font-size: 1.5vw;
 }
 
-.Header {
-  width: 10vh;
+.main_header_container {
+  margin-top: 40vh !important;
 }

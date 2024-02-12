@@ -451,9 +451,9 @@ function Board() {
             </div>
 
             {selectedPost && board.find((post) => post.id === selectedPost) && isModalOpen && (
-              <>
+              <div className='board__modal__main__container'>
                 <div className="overlay" onClick={closeModal}></div>
-                <div className={`modal ${postDetails && postDetails.answers.length > 3 ? 'with-scroll' : ''}`} style={{ width: '51%', height: '75%' }}>
+                <div className={`modal ${postDetails && postDetails.answers.length > 3 ? 'with-scroll' : ''}`} style={{ width: '51%', height: '75%' , background: '#282828'}}>
                   <div className='modal__header__title'>
                     <h3 className='modal__title'>{`${postDetails ? postDetails.title : '불러오는 중...'}`}</h3>
                     <div className='modal__creat__time'>
@@ -462,7 +462,6 @@ function Board() {
                       <span>{` : ${postDetails ? postDetails.created_at.split('T')[1].split(':')[1] : '불러오는 중...'} )`}</span>
                     </div>
                   </div>
-                  <span></span>
                   <div className='modal__day__line'></div>
                   {!isEditMode ? (
                     <>
@@ -519,7 +518,7 @@ function Board() {
                     </div>
                     <button className="modal__close-button" onClick={closeModal}>X</button>
                   </div>
-              </>
+              </div>
             )}
               {isModalOpen && (
               <div className='modal__answer__container_2'>

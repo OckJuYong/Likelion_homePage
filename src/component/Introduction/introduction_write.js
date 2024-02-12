@@ -84,6 +84,8 @@ function IntroductionWrite() {
     fileInput.click();
   };
 
+  
+
   return (
     <>    
     <MenuHeader />
@@ -101,17 +103,7 @@ function IntroductionWrite() {
           className='introduction_content_write'
           rows={10} // 원하는 높이로 조절
         />
-        {/* <label>공지사항 내용</label>
-        <CKEditor
-          editor={ClassicEditor}
-          data={content}
-          onChange={(event, editor) => {
-            const data = editor.getData();
-            setContent(data);
-          }}
-        /> */}
 
-        {/* 추가: 파일 업로드 */}
         <div className="file-upload-container">
           <div className='file_container'>
             <img className="file_img" src={File_img} onClick={handleFileUpload} />
