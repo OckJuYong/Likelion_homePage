@@ -1,0 +1,60 @@
+.assingment__title {
+    margin-top: 23vh;
+}
+
+.assingment__title__week__header {
+    margin-left: 4.5vw;
+    color: white;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    font-size: 5vh;
+}
+
+.task__header__line {
+    margin: 0px 4vw;
+}
+
+.Assingment__weeks__main__container {
+    border: 1px solid white;
+    border-radius: 30px;
+    list-style-type: none;
+    width: 65vw;
+    height: 30vh;
+    margin-left: 4vw;
+    margin-bottom: 3vh;
+    color: white;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    padding: 10px;
+}
+
+.assingment__del__button {
+    position: absolute;
+    margin-left: 70vw;
+    top: 45vh;
+}
+
+.assingment__plus__button {
+    position: absolute;
+    top: 28vh;
+    right: 7vw;
+}
+
+.Assingment__img__yo {
+    margin-left: 2vw;
+}
+
+.Assingment__li__main__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0px 2vw;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
